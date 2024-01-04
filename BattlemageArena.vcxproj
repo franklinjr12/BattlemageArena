@@ -60,18 +60,22 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertySheet.props" />
+    <Import Project="Custom.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertySheet.props" />
+    <Import Project="Custom.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertySheet.props" />
+    <Import Project="Custom.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="PropertySheet.props" />
+    <Import Project="Custom.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,18 +113,18 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)../Arcane2DEngine/include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ArcaneDir)dependencies\imgui;$(ArcaneDir)dependencies\imgui\backends;$(ArcaneDir)include;$(ArcaneDir)dependencies\stb;$(ArcaneDir)dependencies\glew\include;$(ArcaneDir)dependencies\glfw\include;$(ArcaneDir)dependencies\spdlog\include;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3dll.lib;glew32.lib;Arcane2DEngine.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ArcaneDir)dependencies\glew\lib;$(ArcaneDir)dependencies\glfw\lib;$(ArcaneDir)dependencies\spdlog\lib;$(ArcaneDir)Export;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3dll.lib;glew32.lib;spdlogd.lib;Arcane2DEngine.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>set "ArcaneDir=../Arcane2DEngine/" &amp; copy "%ArcaneDir%dependencies\glew\lib\glew32.dll" "%ArcaneDir%$(SolutionDir)bin\glew32.dll" &amp; copy "%ArcaneDir%dependencies\glfw\lib\glfw3.dll" "%ArcaneDir%$(SolutionDir)bin\glfw3.dll" &amp; copy "%ArcaneDir%Export\Arcane2DEngine.dll" "%ArcaneDir%$(SolutionDir)bin\Arcane2DEngine.dll"</Command>
+      <Command>copy "$(ArcaneDir)dependencies\glew\lib\glew32.dll" "$(SolutionDir)bin\glew32.dll" &amp; copy "$(ArcaneDir)dependencies\glfw\lib\glfw3.dll" "$(SolutionDir)bin\glfw3.dll" &amp; copy "$(ArcaneDir)Export\Arcane2DEngine.dll" "$(SolutionDir)bin\Arcane2DEngine.dll"</Command>
       <Message>Copying files</Message>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -142,6 +146,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Game.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
