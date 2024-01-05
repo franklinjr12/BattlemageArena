@@ -1,6 +1,7 @@
 // built with arcane v0.4.1.3
 
 #include "Game.hpp"
+#include "PlayerCharacter.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -15,9 +16,13 @@ int main(void) {
 	auto asset_man = AssetsManager::get_instance();
 
 	Camera* camera = new Camera(0, 0, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
-	Image* background = asset_man->get_image("dark_cloud_background1024_720.png");
+	Image* background = new Image(*asset_man->get_image("battle_arena.png"));
+	background->resize(game->width, game->height);
 	Scene* scene = new Scene(camera, background, DEFAULT_SCREEN_WIDTH * 2, DEFAULT_SCREEN_HEIGHT * 2);
 	scene->gravity = 0;
+
+	PlayerCharacter* pc = new PlayerCharacter();
+	scene->add_body(pc);
 
 	game->current_scene = scene;
 

@@ -146,8 +146,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\PlayerCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\PlayerCharacter.hpp" />
     <ClInclude Include="src\Game.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
