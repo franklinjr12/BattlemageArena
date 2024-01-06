@@ -23,6 +23,8 @@ int main(void) {
 
 	PlayerCharacter* pc = new PlayerCharacter();
 	scene->add_body(pc);
+	game->events_manager->subscribe(EventType::KeyboardInput, pc);
+	game->events_manager->subscribe(EventType::MouseInput, pc);
 
 	game->current_scene = scene;
 
