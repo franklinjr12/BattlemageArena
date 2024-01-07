@@ -1,4 +1,5 @@
 #include "PlayerCharacter.hpp"
+#include "Game.hpp"
 
 #include <AssetsManager.hpp>
 #include <ArcaneUtils.hpp>
@@ -35,39 +36,42 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 			vel[1] = dir[1] * PLAYER_DEFAULT_VELOCITY;
 		}
 		break;
-	//case (event_bytes_type)EventType::KeyboardInput:
-	//	if (data[1] == GLFW_PRESS || data[1] == GLFW_REPEAT) {
-	//		switch (data[2]) {
-	//		case GLFW_KEY_UP:
-	//			vel[1] = -PLAYER_DEFAULT_VELOCITY;
-	//			break;
-	//		case GLFW_KEY_DOWN:
-	//			vel[1] = PLAYER_DEFAULT_VELOCITY;
-	//			break;
-	//		case GLFW_KEY_LEFT:
-	//			vel[0] = -PLAYER_DEFAULT_VELOCITY;
-	//			break;
-	//		case GLFW_KEY_RIGHT:
-	//			vel[0] = PLAYER_DEFAULT_VELOCITY;
-	//			break;
-	//		default:
-	//			break;
-	//		}
-	//	}
-	//	if (data[1] == GLFW_RELEASE) {
-	//		switch (data[2]) {
-	//		case GLFW_KEY_UP:
-	//		case GLFW_KEY_DOWN:
-	//			vel[1] = 0;
-	//			break;
-	//		case GLFW_KEY_LEFT:
-	//		case GLFW_KEY_RIGHT:
-	//			vel[0] = 0;
-	//			break;
-	//		default:
-	//			break;
-	//		}
-	//	}
+	case (event_bytes_type)EventType::KeyboardInput:
+		//if (data[1] == GLFW_PRESS || data[1] == GLFW_REPEAT) {
+		//	switch (data[2]) {
+		//	case GLFW_KEY_UP:
+		//		vel[1] = -PLAYER_DEFAULT_VELOCITY;
+		//		break;
+		//	case GLFW_KEY_DOWN:
+		//		vel[1] = PLAYER_DEFAULT_VELOCITY;
+		//		break;
+		//	case GLFW_KEY_LEFT:
+		//		vel[0] = -PLAYER_DEFAULT_VELOCITY;
+		//		break;
+		//	case GLFW_KEY_RIGHT:
+		//		vel[0] = PLAYER_DEFAULT_VELOCITY;
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//}
+		if (data[1] == GLFW_RELEASE) {
+			switch (data[2]) {
+			case GLFW_KEY_Q:
+				cast_spell(1);
+				break;
+			//case GLFW_KEY_UP:
+			//case GLFW_KEY_DOWN:
+			//	vel[1] = 0;
+			//	break;
+			//case GLFW_KEY_LEFT:
+			//case GLFW_KEY_RIGHT:
+			//	vel[0] = 0;
+			//	break;
+			default:
+				break;
+			}
+		}
 	}
 }
 
@@ -76,4 +80,14 @@ void PlayerCharacter::_update() {
 		vel[0] = 0;
 		vel[1] = 0;
 	}
+}
+
+void PlayerCharacter::cast_spell(int spell_num) {
+	Vecf dir;
+	dir[0] = (float)game->mouse_pos[0] - getX();
+	dir[1] = (float)game->mouse_pos[1] - getY();
+	float dir_mag = MagVecf(dir);
+	dir[0] = dir[0] / dir_mag;
+	dir[1] = dir[1] / dir_mag;
+
 }

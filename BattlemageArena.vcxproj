@@ -147,9 +147,11 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
+    <ClCompile Include="src\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\PlayerCharacter.hpp" />
+    <ClInclude Include="include\Projectile.hpp" />
     <ClInclude Include="src\Game.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
