@@ -5,5 +5,5 @@
 class Projectile : public DynamicBody {
 public:
 
-	Projectile(Vecf pos, Vecf vel, Image* i = nullptr, BodyRectangle* br = nullptr);
+	Projectile(Vecf pos, Vecf v);
 };

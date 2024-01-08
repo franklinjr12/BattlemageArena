@@ -1,5 +1,6 @@
 #include "PlayerCharacter.hpp"
 #include "Game.hpp"
+#include "Projectile.hpp"
 
 #include <AssetsManager.hpp>
 #include <ArcaneUtils.hpp>
@@ -89,5 +90,11 @@ void PlayerCharacter::cast_spell(int spell_num) {
 	float dir_mag = MagVecf(dir);
 	dir[0] = dir[0] / dir_mag;
 	dir[1] = dir[1] / dir_mag;
-
+	Vecf p_initial_pos;
+	p_initial_pos[0] = getX() + dir[0] * 10;
+	p_initial_pos[1] = getY() + dir[1] * 10;
+	Vecf p_vel;
+	p_vel[0] = dir[0] * 10;
+	p_vel[1] = dir[1] * 10;
+	game->current_scene->add_body(new Projectile(p_initial_pos, p_vel));
 }

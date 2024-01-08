@@ -5,11 +5,10 @@
 class Game : public Application {
 public:
 
-	void game_loop() override {
-	}
+	void game_loop() override;
 
-	void game_draw() override {
-	}
+	void game_draw() override;
+
 };
 
-static Game* game;
+extern Game* game;
