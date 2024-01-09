@@ -6,15 +6,17 @@
 #include <ArcaneUtils.hpp>
 
 PlayerCharacter::PlayerCharacter() {
-	image = new Image(*AssetsManager::get_instance()->get_image("fire_mage.png"));
+	player_left = new Image(*AssetsManager::get_instance()->get_image("fire_mage.png"));
 	int w = 30;
 	int h = 60;
 	Vecf pos = { 500,500 };
-	image->resize(w, h);
+	player_left->resize(w, h);
+	player_right = new Image(*player_left);
+	player_right->fliph();
+	image = player_left;
 	rectangle = new BodyRectangle(pos, w, h);
 	setX(pos[0]);
 	setY(pos[1]);
-
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
@@ -81,6 +83,10 @@ void PlayerCharacter::_update() {
 		vel[0] = 0;
 		vel[1] = 0;
 	}
+	if (game->mouse_pos[0] > getX())
+		image = player_right;
+	else
+		image = player_left;
 }
 
 void PlayerCharacter::cast_spell(int spell_num) {
