@@ -6,13 +6,13 @@
 #include <ArcaneUtils.hpp>
 
 PlayerCharacter::PlayerCharacter() {
-	player_left = new Image(*AssetsManager::get_instance()->get_image("fire_mage.png"));
+	player_left = AssetsManager::get_instance()->get_image("fire_mage.png");
 	int w = 30;
 	int h = 60;
 	Vecf pos = { 500,500 };
 	player_left->resize(w, h);
-	player_right = new Image(*player_left);
-	player_right->fliph();
+	player_right = AssetsManager::get_instance()->get_image("fire_mage_right.png");
+	player_right->resize(w, h);
 	image = player_left;
 	rectangle = new BodyRectangle(pos, w, h);
 	setX(pos[0]);
