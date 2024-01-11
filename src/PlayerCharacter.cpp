@@ -9,14 +9,16 @@ PlayerCharacter::PlayerCharacter() {
 	player_left = AssetsManager::get_instance()->get_image("fire_mage.png");
 	int w = 30;
 	int h = 60;
-	Vecf pos = { 500,500 };
 	player_left->resize(w, h);
 	player_right = AssetsManager::get_instance()->get_image("fire_mage_right.png");
 	player_right->resize(w, h);
 	image = player_left;
+	Vecf pos = { 500, 500 };
 	rectangle = new BodyRectangle(pos, w, h);
 	setX(pos[0]);
 	setY(pos[1]);
+	set_position[0] = getX();
+	set_position[1] = getY();
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
@@ -63,14 +65,14 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 			case GLFW_KEY_Q:
 				cast_spell(1);
 				break;
-			//case GLFW_KEY_UP:
-			//case GLFW_KEY_DOWN:
-			//	vel[1] = 0;
-			//	break;
-			//case GLFW_KEY_LEFT:
-			//case GLFW_KEY_RIGHT:
-			//	vel[0] = 0;
-			//	break;
+				//case GLFW_KEY_UP:
+				//case GLFW_KEY_DOWN:
+				//	vel[1] = 0;
+				//	break;
+				//case GLFW_KEY_LEFT:
+				//case GLFW_KEY_RIGHT:
+				//	vel[0] = 0;
+				//	break;
 			default:
 				break;
 			}
@@ -98,6 +100,10 @@ void PlayerCharacter::cast_spell(int spell_num) {
 	dir[1] = dir[1] / dir_mag;
 	Vecf p_initial_pos;
 	p_initial_pos[0] = getX() + dir[0] * 10;
+	if (game->mouse_pos[0] > getX())
+		p_initial_pos[0] += rectangle->w;
+	else
+		p_initial_pos[0] += -rectangle->w;
 	p_initial_pos[1] = getY() + dir[1] * 10;
 	Vecf p_vel;
 	p_vel[0] = dir[0] * 10;
