@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include <Player.hpp>
+#include "Character.hpp"
 
-class PlayerCharacter : public Player {
+class PlayerCharacter : public Character {
 public:
 
 	PlayerCharacter();

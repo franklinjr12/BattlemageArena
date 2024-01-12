@@ -145,15 +145,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BasicSpell.cpp" />
+    <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
-    <ClCompile Include="src\Projectile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BasicSpell.hpp" />
+    <ClInclude Include="include\Character.hpp" />
     <ClInclude Include="include\PlayerCharacter.hpp" />
-    <ClInclude Include="include\Projectile.hpp" />
     <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\Spell.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

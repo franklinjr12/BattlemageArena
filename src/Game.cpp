@@ -21,7 +21,7 @@ void Game::game_draw() {
 	sprintf_s(text_buffer, "mx: %03d my: %03d", (int)mouse_pos[0], (int)mouse_pos[1]);
 	font->print(pos, (char*)text_buffer);
 	pos[1] += 20;
-	sprintf_s(text_buffer, "px: %03d py: %03d", (int)player->getX(), (int)player->getY());
-	font->print(pos, (char*)text_buffer);
+	//sprintf_s(text_buffer, "px: %03d py: %03d", (int)player->getX(), (int)player->getY());
+	//font->print(pos, (char*)text_buffer);
 
 }

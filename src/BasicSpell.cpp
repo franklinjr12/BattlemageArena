@@ -1,9 +1,9 @@
-#include "Projectile.hpp"
+#include "BasicSpell.hpp"
 
 #include <AssetsManager.hpp>
 
-Projectile::Projectile(Vecf pos, Vecf v) {
-	image = AssetsManager::get_instance()->get_image("first_spell.png");
+BasicSpell::BasicSpell(Vecf pos, Vecf v) {
+	image = AssetsManager::get_instance()->get_image("basic_spell.png");
 	rectangle = new BodyRectangle(pos, image->width, image->height);
 	setX(pos[0]);
 	setY(pos[1]);

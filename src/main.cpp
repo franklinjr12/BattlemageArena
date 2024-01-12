@@ -1,4 +1,4 @@
-// built with arcane v0.4.1.3
+// built with arcane v0.4.1.6
 
 #include "Game.hpp"
 #include "PlayerCharacter.hpp"
@@ -21,8 +21,8 @@ int main(void) {
 	Scene* scene = new Scene(camera, background, DEFAULT_SCREEN_WIDTH * 2, DEFAULT_SCREEN_HEIGHT * 2);
 	scene->gravity = 0;
 
-	PlayerCharacter* pc = new PlayerCharacter();
-	game->player = pc;
+	PlayerCharacter* pc = new PlayerCharacter();	
+	//game->player = pc;
 	scene->add_body(pc);
 	game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	game->events_manager->subscribe(EventType::MouseInput, pc);
