@@ -24,7 +24,7 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\BasicSpell.cpp">
+    <ClCompile Include="src\BasicProjectileSpell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Character.cpp">
@@ -38,13 +38,22 @@
     <ClInclude Include="include\PlayerCharacter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\BasicSpell.hpp">
+    <ClInclude Include="include\BasicProjectileSpell.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Character.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Spell.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpellElement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SpellEffect.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GroupsDef.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
