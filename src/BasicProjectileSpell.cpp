@@ -1,12 +1,17 @@
 #include "BasicProjectileSpell.hpp"
+#include "Game.hpp"
 
 #include <AssetsManager.hpp>
 
-BasicProjectileSpell::BasicProjectileSpell(Vecf pos, Vecf v) {
+BasicProjectileSpell::BasicProjectileSpell() : Spell(cooldown_ms) {
+	name = "BasicProjectileSpell";
 	image = AssetsManager::get_instance()->get_image("basic_spell.png");
-	rectangle = new BodyRectangle(pos, image->width, image->height);
-	setX(pos[0]);
-	setY(pos[1]);
-	vel[0] = v[0];
-	vel[1] = v[1];
+	// put rectangle out of screen, it will be set when cast() is called
+	rectangle = new BodyRectangle(Vecf{-200,-200}, image->width, image->height);
+}
+
+void BasicProjectileSpell::_cast(Vecf position, Vecf dir) {
+	vel[0] = dir[0] * projectile_velocity;
+	vel[1] = dir[1] * projectile_velocity;
+	game->current_scene->add_body(this);
 }

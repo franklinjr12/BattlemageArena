@@ -19,6 +19,7 @@ PlayerCharacter::PlayerCharacter() {
 	setY(pos[1]);
 	set_position[0] = getX();
 	set_position[1] = getY();
+	spells.push_back(new BasicProjectileSpell());
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
@@ -62,9 +63,17 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 		//}
 		if (data[1] == GLFW_RELEASE) {
 			switch (data[2]) {
-			case GLFW_KEY_Q:
-				cast_spell(1);
+			case GLFW_KEY_Q: {
+				//cast_spell(1);
+				Vecf dir;
+				dir[0] = (float)game->mouse_pos[0] - getX();
+				dir[1] = (float)game->mouse_pos[1] - getY();
+				float dir_mag = MagVecf(dir);
+				dir[0] = dir[0] / dir_mag;
+				dir[1] = dir[1] / dir_mag;
+				cast_spell(0, dir);
 				break;
+			}
 				//case GLFW_KEY_UP:
 				//case GLFW_KEY_DOWN:
 				//	vel[1] = 0;
@@ -91,22 +100,21 @@ void PlayerCharacter::_update() {
 		image = player_left;
 }
 
-void PlayerCharacter::cast_spell(int spell_num) {
-	Vecf dir;
-	dir[0] = (float)game->mouse_pos[0] - getX();
-	dir[1] = (float)game->mouse_pos[1] - getY();
-	float dir_mag = MagVecf(dir);
-	dir[0] = dir[0] / dir_mag;
-	dir[1] = dir[1] / dir_mag;
-	Vecf p_initial_pos;
-	p_initial_pos[0] = getX() + dir[0] * 10;
-	if (game->mouse_pos[0] > getX())
-		p_initial_pos[0] += rectangle->w;
-	else
-		p_initial_pos[0] += -rectangle->w;
-	p_initial_pos[1] = getY() + dir[1] * 10;
-	Vecf p_vel;
-	p_vel[0] = dir[0] * 10;
-	p_vel[1] = dir[1] * 10;
-	game->current_scene->add_body(new BasicProjectileSpell(p_initial_pos, p_vel));
-}
+//void PlayerCharacter::cast_spell(int spell_num) {
+//	Vecf dir;
+//	dir[0] = (float)game->mouse_pos[0] - getX();
+//	dir[1] = (float)game->mouse_pos[1] - getY();
+//	float dir_mag = MagVecf(dir);
+//	dir[0] = dir[0] / dir_mag;
+//	dir[1] = dir[1] / dir_mag;
+//	Vecf p_initial_pos;
+//	p_initial_pos[0] = getX() + dir[0] * 10;
+//	if (game->mouse_pos[0] > getX())
+//		p_initial_pos[0] += rectangle->w;
+//	else
+//		p_initial_pos[0] += -rectangle->w;
+//	p_initial_pos[1] = getY() + dir[1] * 10;
+//	Spell* sp = new BasicProjectileSpell();
+//	sp->owner = id;
+//	sp->cast(p_initial_pos, dir);
+//}

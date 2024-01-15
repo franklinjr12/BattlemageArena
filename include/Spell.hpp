@@ -13,15 +13,18 @@ public:
 
 	Spell(float cooldown_ms = 1000);
 
-	bool cast();
+	bool cast(Vecf position, Vecf dir);
 	void process_events(std::vector<event_bytes_type> data);
-	virtual void _process_events(std::vector<event_bytes_type> data);
+	// should implement those
+	virtual void _cast(Vecf position, Vecf dir) {};
+	virtual void _process_events(std::vector<event_bytes_type> data) {};
 
 	float cooldown_ms = 1;
 	float damage = 0;
 	bool on_cooldown = false;
-	SpellElement element;
-	SpellEffect effect;
+	Vecf direction;
+	SpellElement element = SpellElement::ENERGY;
+	SpellEffect effect = SpellEffect::NONE;
 	ObjectId owner;
 	Animation* animation;
 	Timer* timer;
