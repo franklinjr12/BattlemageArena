@@ -6,23 +6,23 @@
 
 #include <DynamicBody.hpp>
 #include <Animation.hpp>
+#include <Timer.hpp>
 
 class Spell : public DynamicBody {
 public:
 
-	Spell(){
-		name = "spell";
-		groups.push_back((ObjectGroup)GameGroups::SPELL);
-	}
+	Spell(float cooldown_ms = 1000);
 
-	bool cast() {
+	bool cast();
+	void process_events(std::vector<event_bytes_type> data);
+	virtual void _process_events(std::vector<event_bytes_type> data);
 
-	}
-
-	float cooldown = 1;
+	float cooldown_ms = 1;
 	float damage = 0;
+	bool on_cooldown = false;
 	SpellElement element;
 	SpellEffect effect;
 	ObjectId owner;
 	Animation* animation;
+	Timer* timer;
 };
