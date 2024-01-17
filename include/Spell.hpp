@@ -2,7 +2,7 @@
 
 #include "SpellElement.hpp"
 #include "SpellEffect.hpp"
-#include "GroupsDef.h"
+#include "GroupsDef.hpp"
 
 #include <DynamicBody.hpp>
 #include <Animation.hpp>

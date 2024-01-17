@@ -155,7 +155,7 @@
   <ItemGroup>
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
     <ClInclude Include="include\Character.hpp" />
-    <ClInclude Include="include\GroupsDef.h" />
+    <ClInclude Include="include\GroupsDef.hpp" />
     <ClInclude Include="include\PlayerCharacter.hpp" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\Spell.hpp" />

@@ -56,7 +56,7 @@
     <ClInclude Include="include\SpellEffect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\GroupsDef.h">
+    <ClInclude Include="include\GroupsDef.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
