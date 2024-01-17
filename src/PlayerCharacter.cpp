@@ -19,7 +19,7 @@ PlayerCharacter::PlayerCharacter() {
 	setY(pos[1]);
 	set_position[0] = getX();
 	set_position[1] = getY();
-	spells.push_back(new BasicProjectileSpell());
+	spells.push_back(new BasicProjectileSpell(id));
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {

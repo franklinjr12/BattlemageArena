@@ -80,6 +80,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin</OutDir>
+    <SourcePath>$(ArcaneDir)src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,9 +114,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ArcaneDir)dependencies\imgui;$(ArcaneDir)dependencies\imgui\backends;$(ArcaneDir)include;$(ArcaneDir)dependencies\stb;$(ArcaneDir)dependencies\glew\include;$(ArcaneDir)dependencies\glfw\include;$(ArcaneDir)dependencies\spdlog\include;$(SolutionDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,6 +154,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
     <ClCompile Include="src\Spell.cpp" />
+    <ClCompile Include="src\SpellInstance.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
@@ -161,6 +165,7 @@
     <ClInclude Include="include\Spell.hpp" />
     <ClInclude Include="include\SpellEffect.hpp" />
     <ClInclude Include="include\SpellElement.hpp" />
+    <ClInclude Include="include\SpellInstance.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

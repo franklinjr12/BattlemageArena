@@ -1,23 +1,21 @@
 #include "BasicProjectileSpell.hpp"
+#include "SpellInstance.hpp"
 #include "Game.hpp"
 
 #include <AssetsManager.hpp>
 
-BasicProjectileSpell::BasicProjectileSpell() : Spell(cooldown_ms) {
+BasicProjectileSpell::BasicProjectileSpell(ObjectId owner) : Spell(DEFAULT_TIMEOUT) {
+	this->owner = owner;
 	name = "BasicProjectileSpell";
 	image = AssetsManager::get_instance()->get_image("basic_spell.png");
-	// put rectangle out of screen, it will be set when cast() is called
-	rectangle = new BodyRectangle(Vecf{-200,-200}, image->width, image->height);
-	cooldown_ms = 2000;
+	set_cooldown(DEFAULT_TIMEOUT); // it is needed as a workaround for now
 	damage = 1;
 }
 
 void BasicProjectileSpell::_cast(Vecf position, Vecf dir) {
+	Vecf vel;
 	vel[0] = dir[0] * projectile_velocity;
 	vel[1] = dir[1] * projectile_velocity;
-	DynamicBody* physical_spell = new DynamicBody(image, rectangle);
-	physical_spell->vel[0] = vel[0];
-	physical_spell->vel[1] = vel[1];
-	game->current_scene->add_body(physical_spell);
-	//game->current_scene->add_body(new BasicProjectileSpell(*this));
+	SpellInstance* spell = new SpellInstance(id, image, position, vel);
+	game->current_scene->add_body(spell);
 }
