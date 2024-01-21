@@ -1,6 +1,7 @@
 #include "SpellInstance.hpp"
 #include "Game.hpp"
 #include "Character.hpp"
+#include "SpellInteraction.hpp"
 
 #include <algorithm>
 
@@ -15,15 +16,12 @@ SpellInstance::SpellInstance(Spell* owner, Image* img, Vecf spawn_position, Vecf
 	setY(spawn_position[1]);
 }
 
-void SpellInstance::handle_collision(ObjectId _id){
+void SpellInstance::handle_collision(ObjectId _id) {
 	Object* obj = game->current_scene->get_body(_id);
-	bool is_character = false;
 	for (auto& e : obj->groups) {
 		if ((ObjectGroup)e == (ObjectGroup)GameGroups::CHARACTER)
-			is_character = true;
-	}
-	if (is_character) {
-		Character* c = (Character*)obj;
-		c->health -= owner->damage;
+			SpellInteraction::interact(owner, (Character*)obj);
+		if ((ObjectGroup)e == (ObjectGroup)GameGroups::SPELL)
+			SpellInteraction::interact(owner, (Spell*)obj);
 	}
 }

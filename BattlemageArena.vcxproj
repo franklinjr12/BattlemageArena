@@ -155,6 +155,7 @@
     <ClCompile Include="src\PlayerCharacter.cpp" />
     <ClCompile Include="src\Spell.cpp" />
     <ClCompile Include="src\SpellInstance.cpp" />
+    <ClCompile Include="src\SpellInteraction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="include\SpellEffect.hpp" />
     <ClInclude Include="include\SpellElement.hpp" />
     <ClInclude Include="include\SpellInstance.hpp" />
+    <ClInclude Include="include\SpellInteraction.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
