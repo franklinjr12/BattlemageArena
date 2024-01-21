@@ -16,6 +16,6 @@ void BasicProjectileSpell::_cast(Vecf position, Vecf dir) {
 	Vecf vel;
 	vel[0] = dir[0] * projectile_velocity;
 	vel[1] = dir[1] * projectile_velocity;
-	SpellInstance* spell = new SpellInstance(id, image, position, vel);
+	SpellInstance* spell = new SpellInstance(this, image, position, vel);
 	game->current_scene->add_body(spell);
 }

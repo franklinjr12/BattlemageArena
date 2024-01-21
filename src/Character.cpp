@@ -3,6 +3,7 @@
 #include <ArcaneUtils.hpp>
 
 Character::Character() {
+	groups.push_back((ObjectGroup)GameGroups::CHARACTER);
 }
 
 void Character::_update() {
