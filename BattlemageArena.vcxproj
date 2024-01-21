@@ -151,6 +151,7 @@
     <ClCompile Include="src\BasicProjectileSpell.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
     <ClCompile Include="src\Spell.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
     <ClInclude Include="include\Character.hpp" />
     <ClInclude Include="include\GroupsDef.hpp" />
+    <ClInclude Include="include\HealthBar.hpp" />
     <ClInclude Include="include\PlayerCharacter.hpp" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\Spell.hpp" />

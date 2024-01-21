@@ -9,7 +9,7 @@ BasicProjectileSpell::BasicProjectileSpell(ObjectId owner) : Spell(DEFAULT_TIMEO
 	name = "BasicProjectileSpell";
 	image = AssetsManager::get_instance()->get_image("basic_spell.png");
 	set_cooldown(DEFAULT_TIMEOUT); // it is needed as a workaround for now
-	damage = 1;
+	damage = 10;
 }
 
 void BasicProjectileSpell::_cast(Vecf position, Vecf dir) {

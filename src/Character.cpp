@@ -6,6 +6,13 @@ Character::Character() {
 	groups.push_back((ObjectGroup)GameGroups::CHARACTER);
 }
 
+void Character::_draw(){
+	if (health_bar->health_ui->should_draw) {
+		Vecf offset = { getX(), getY() - image->height };
+		health_bar->draw(offset);
+	}
+}
+
 void Character::_update() {
 	if (DistanceVecf(set_position, Vecf{ getX(), getY() }) < POSITION_STOP_THRESHOLD) {
 		vel[0] = 0;

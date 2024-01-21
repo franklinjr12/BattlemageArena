@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Spell.hpp"
+#include "HealthBar.hpp"
 
 #include <DynamicBody.hpp>
 
@@ -13,11 +14,13 @@ public:
 	
 	Character();
 
+	virtual void _draw() override;
 	virtual void _update();
 	virtual void cast_spell(int spell_num, Vecf direction);
 	virtual void attack();
 	
 	float health = 100;
+	HealthBar* health_bar = nullptr;
 	Vecf set_position;
 	float dash_cooldown_ms = 1000;
 	float attack_cooldown_ms = 1000;
