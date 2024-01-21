@@ -4,5 +4,7 @@
 
 enum class GameGroups : ObjectGroup {
 	SPELL,
-	CHARACTER
+	SPELLINSTANCE,
+	CHARACTER,
+	MARKDELETE
 };

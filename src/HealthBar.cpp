@@ -3,8 +3,12 @@
 #include <AssetsManager.hpp>
 
 HealthBar::HealthBar(float initial_hp, Vecf position) {
-	auto img_back = AssetsManager::get_instance()->get_image("progress_bar.png");
-	auto img_front = AssetsManager::get_instance()->get_image("progress_bar_front.png");
+	// if use this way the image size will be share with all characters
+	//auto img_back = AssetsManager::get_instance()->get_image("progress_bar.png");
+	//auto img_front = AssetsManager::get_instance()->get_image("progress_bar_front.png");
+	// will need to create new images and not shared
+	auto img_back = new Image("assets/progress_bar.png");
+	auto img_front = new Image("assets/progress_bar_front.png");
 	health_ui = new ProgressBar(position, img_back, img_front, 0, initial_hp);
 	current_health_points = initial_hp;
 }

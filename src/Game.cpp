@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "GroupsDef.hpp"
 
 #include <AssetsManager.hpp>
 
@@ -10,6 +11,14 @@ Game::Game() {
 }
 
 void Game::game_loop() {
+	std::vector<ObjectId> bodies_to_remove;
+	for (auto* b : current_scene->bodies) {
+		for (auto& e : b->groups)
+			if (e == (ObjectGroup)GameGroups::MARKDELETE)
+				bodies_to_remove.push_back(b->id);
+	}
+	for (ObjectId& b : bodies_to_remove)
+		current_scene->remove_body(b);
 }
 
 void Game::game_draw() {

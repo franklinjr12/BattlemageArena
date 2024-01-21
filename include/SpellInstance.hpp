@@ -10,7 +10,7 @@ public:
 	
 	//SpellInstance(ObjectId owner, Image* img, Vecf spawn_position, Vecf spawn_speed);
 	SpellInstance(Spell* owner, Image* img, Vecf spawn_position, Vecf spawn_speed);
-	virtual void handle_collision(ObjectId _id);
+	virtual void handle_collision(ObjectId _id) override;
 	Animation* animation = nullptr;
 	//ObjectId owner;
 	Spell* owner;
