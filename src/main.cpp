@@ -21,9 +21,8 @@ int main(void) {
 	Scene* scene = new Scene(camera, background, DEFAULT_SCREEN_WIDTH * 2, DEFAULT_SCREEN_HEIGHT * 2);
 	scene->gravity = 0;
 
-	PlayerCharacter* pc = new PlayerCharacter();	
+	PlayerCharacter* pc = new PlayerCharacter();
 	//game->player = pc;
-	pc->health_bar = new HealthBar();
 	scene->add_body(pc);
 	game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	game->events_manager->subscribe(EventType::MouseInput, pc);

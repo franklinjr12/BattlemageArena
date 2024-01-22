@@ -6,5 +6,6 @@ enum class GameGroups : ObjectGroup {
 	SPELL,
 	SPELLINSTANCE,
 	CHARACTER,
-	MARKDELETE
+	MARKDELETE,
+	PLAYER
 };

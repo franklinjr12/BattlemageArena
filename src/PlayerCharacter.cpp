@@ -19,6 +19,8 @@ PlayerCharacter::PlayerCharacter() {
 	setY(pos[1]);
 	set_position[0] = getX();
 	set_position[1] = getY();
+	health_bar = new HealthBar();
+	groups.push_back((ObjectGroup)GameGroups::PLAYER);
 	spells.push_back(new BasicProjectileSpell(id));
 }
 
@@ -86,6 +88,13 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 				break;
 			}
 		}
+	}
+}
+
+void PlayerCharacter::_draw() {
+	if (health_bar->health_ui->should_draw) {
+		Vecf offset = { 10, game->height - image->height - 10 };
+		health_bar->draw(offset);
 	}
 }
 
