@@ -21,7 +21,10 @@ PlayerCharacter::PlayerCharacter() {
 	set_position[1] = getY();
 	health_bar = new HealthBar();
 	groups.push_back((ObjectGroup)GameGroups::PLAYER);
-	spells.push_back(new BasicProjectileSpell(id));
+	auto sp1 = new BasicProjectileSpell(id);
+	spells.push_back(sp1);
+	auto ui1 = new SpellCooldownDisplay(Vecf{ (float)game->width / 2, (float)game->height - 40 }, sp1->spell_ui);
+	spells_ui[0] = ui1;
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
@@ -96,6 +99,7 @@ void PlayerCharacter::_draw() {
 		Vecf offset = { 10, game->height - image->height - 10 };
 		health_bar->draw(offset);
 	}
+	spells_ui[0]->draw();
 }
 
 void PlayerCharacter::_update() {

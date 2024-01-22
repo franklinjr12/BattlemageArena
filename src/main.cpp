@@ -22,7 +22,7 @@ int main(void) {
 	scene->gravity = 0;
 
 	PlayerCharacter* pc = new PlayerCharacter();
-	//game->player = pc;
+	game->player = pc;
 	scene->add_body(pc);
 	game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	game->events_manager->subscribe(EventType::MouseInput, pc);

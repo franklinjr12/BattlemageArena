@@ -8,6 +8,7 @@ BasicProjectileSpell::BasicProjectileSpell(ObjectId owner) : Spell(DEFAULT_TIMEO
 	this->owner = owner;
 	name = "BasicProjectileSpell";
 	image = AssetsManager::get_instance()->get_image("basic_spell.png");
+	spell_ui = AssetsManager::get_instance()->get_image("basic_spell_ui.png");
 	set_cooldown(DEFAULT_TIMEOUT); // it is needed as a workaround for now
 	damage = 10;
 }

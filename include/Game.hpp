@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PlayerCharacter.hpp"
+
 #include <Application.hpp>
 
 class Game : public Application {
@@ -12,7 +14,7 @@ public:
 	void game_draw() override;
 
 	Font* font;
-	Player* player;
+	PlayerCharacter* player;
 };
 
 extern Game* game;

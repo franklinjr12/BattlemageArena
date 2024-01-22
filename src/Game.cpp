@@ -32,5 +32,4 @@ void Game::game_draw() {
 	pos[1] += 20;
 	//sprintf_s(text_buffer, "px: %03d py: %03d", (int)player->getX(), (int)player->getY());
 	//font->print(pos, (char*)text_buffer);
-
 }

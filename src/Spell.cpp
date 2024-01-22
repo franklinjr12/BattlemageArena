@@ -9,6 +9,7 @@ Spell::Spell(float cooldown_ms) {
 	timer = new Timer(cooldown_ms);
 	EventsManager::getInstance()->subscribe(EventType::Timer, this);
 	image = nullptr;
+	spell_ui = nullptr;
 }
 
 bool Spell::cast(Vecf position, Vecf dir) {

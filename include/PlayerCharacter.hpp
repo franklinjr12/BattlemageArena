@@ -1,6 +1,11 @@
 #pragma once
 
 #include "Character.hpp"
+#include "SpellCooldownDisplay.hpp"
+
+#include <array>
+
+#define PLAYER_SHOW_SPELLS_NUM 4
 
 class PlayerCharacter : public Character {
 public:
@@ -14,4 +19,5 @@ public:
 	const float PLAYER_DEFAULT_VELOCITY = 4;
 	Image* player_right;
 	Image* player_left;
+	std::array<SpellCooldownDisplay*, PLAYER_SHOW_SPELLS_NUM> spells_ui;
 };

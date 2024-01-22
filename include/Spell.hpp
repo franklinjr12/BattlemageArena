@@ -28,6 +28,7 @@ public:
 	SpellEffect effect = SpellEffect::NONE;
 	ObjectId owner;
 	Image* image;
+	Image* spell_ui;
 	Animation* animation;
 	Timer* timer;
 
