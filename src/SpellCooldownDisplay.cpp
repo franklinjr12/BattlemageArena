@@ -9,8 +9,8 @@ SpellCooldownDisplay::SpellCooldownDisplay(Vecf pos, Image* image) : Button(pos,
 }
 
 void SpellCooldownDisplay::draw() {
-	background->draw(pos);
-	foreground->draw(pos);
+	background->draw(pos, background->width, background->height);
+	foreground->draw(pos, foreground->width, foreground->height);
 	if(on_cooldown)
-		cooldown_overlay->draw(pos, RGBA_t{1,1,1,0.5});
+		cooldown_overlay->draw(pos, RGBA_t{1,1,1,0.5}, cooldown_overlay->width, cooldown_overlay->height);
 }

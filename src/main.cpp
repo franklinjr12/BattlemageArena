@@ -8,7 +8,7 @@
 #include <iostream>
 
 int main(void) {
-	printf("Running with arcane %s\n", arcane_version_string().c_str());
+	printf("Running with arcane %s!\n", arcane_version_string().c_str());
 
 	game = new Game();
 	//game->init();
@@ -27,14 +27,14 @@ int main(void) {
 	game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	game->events_manager->subscribe(EventType::MouseInput, pc);
 
-	Character* c1 = new Character();
-	Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
-	c1->image = AssetsManager::get_instance()->get_image("big_demon_run_anim_f3.png");
-	c1->rectangle = new BodyRectangle(c1_pos, c1->image->width, c1->image->height);
-	c1->setX(c1_pos[0]);
-	c1->setY(c1_pos[1]);
-	c1->health_bar = new HealthBar();
-	scene->add_body(c1);
+	//Character* c1 = new Character();
+	//Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
+	//c1->image = AssetsManager::get_instance()->get_image("big_demon_run_anim_f3.png");
+	//c1->rectangle = new BodyRectangle(c1_pos, c1->image->width, c1->image->height);
+	//c1->setX(c1_pos[0]);
+	//c1->setY(c1_pos[1]);
+	//c1->health_bar = new HealthBar();
+	//scene->add_body(c1);
 
 	game->current_scene = scene;
 
