@@ -23,8 +23,12 @@ PlayerCharacter::PlayerCharacter() {
 	groups.push_back((ObjectGroup)GameGroups::PLAYER);
 	auto sp1 = new BasicProjectileSpell(id);
 	spells.push_back(sp1);
-	auto ui1 = new SpellCooldownDisplay(Vecf{ (float)game->width / 2, (float)game->height - 40 }, sp1->spell_ui);
-	spells_ui[0] = ui1;
+	float spacing = sp1->spell_ui->width;
+	float sw = sp1->spell_ui->width;
+	spells_ui[0] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) - 2 * spacing - sw, (float)game->height - 40 }, sp1->spell_ui);
+	spells_ui[1] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) - 1 * spacing, (float)game->height - 40 }, sp1->spell_ui);
+	spells_ui[2] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 1 * spacing, (float)game->height - 40 }, sp1->spell_ui);
+	spells_ui[3] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 2 * spacing + sw, (float)game->height - 40 }, sp1->spell_ui);
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
@@ -79,14 +83,14 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 				cast_spell(0, dir);
 				break;
 			}
-				//case GLFW_KEY_UP:
-				//case GLFW_KEY_DOWN:
-				//	vel[1] = 0;
-				//	break;
-				//case GLFW_KEY_LEFT:
-				//case GLFW_KEY_RIGHT:
-				//	vel[0] = 0;
-				//	break;
+						   //case GLFW_KEY_UP:
+						   //case GLFW_KEY_DOWN:
+						   //	vel[1] = 0;
+						   //	break;
+						   //case GLFW_KEY_LEFT:
+						   //case GLFW_KEY_RIGHT:
+						   //	vel[0] = 0;
+						   //	break;
 			default:
 				break;
 			}
@@ -99,7 +103,10 @@ void PlayerCharacter::_draw() {
 		Vecf offset = { 10, game->height - image->height - 10 };
 		health_bar->draw(offset);
 	}
-	spells_ui[0]->draw();
+	for (auto* s : spells_ui) {
+		if (s)
+			s->draw();
+	}
 }
 
 void PlayerCharacter::_update() {
