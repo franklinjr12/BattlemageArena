@@ -2,6 +2,7 @@
 
 #include "Character.hpp"
 #include "SpellCooldownDisplay.hpp"
+#include "ExperienceBar.hpp"
 
 #include <array>
 
@@ -19,5 +20,6 @@ public:
 	const float PLAYER_DEFAULT_VELOCITY = 4;
 	Image* player_right;
 	Image* player_left;
+	ExperienceBar* player_exp;
 	std::array<SpellCooldownDisplay*, PLAYER_SHOW_SPELLS_NUM> spells_ui;
 };

@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClCompile Include="src\BasicProjectileSpell.cpp" />
     <ClCompile Include="src\Character.cpp" />
+    <ClCompile Include="src\ExperienceBar.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -162,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
     <ClInclude Include="include\Character.hpp" />
+    <ClInclude Include="include\ExperienceBar.hpp" />
     <ClInclude Include="include\GroupsDef.hpp" />
     <ClInclude Include="include\HealthBar.hpp" />
     <ClInclude Include="include\PlayerCharacter.hpp" />

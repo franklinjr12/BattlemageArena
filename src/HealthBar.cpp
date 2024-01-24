@@ -19,7 +19,7 @@ void HealthBar::draw(Vecf position) {
 	health_ui->draw();
 }
 
-void HealthBar::suffer_damage(float damage){
+void HealthBar::suffer_damage(float damage) {
 	current_health_points -= damage;
 	if (current_health_points < 0) current_health_points = 0;
 	health_ui->set_current(current_health_points);

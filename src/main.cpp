@@ -8,7 +8,7 @@
 #include <iostream>
 
 int main(void) {
-	printf("Running with arcane %s!\n", arcane_version_string().c_str());
+	printf("Running with arcane %s\n", arcane_version_string().c_str());
 
 	game = new Game();
 	//game->init();

@@ -25,10 +25,12 @@ PlayerCharacter::PlayerCharacter() {
 	spells.push_back(sp1);
 	float spacing = sp1->spell_ui->width;
 	float sw = sp1->spell_ui->width;
-	spells_ui[0] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) - 2 * spacing - sw, (float)game->height - 40 }, sp1->spell_ui);
-	spells_ui[1] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) - 1 * spacing, (float)game->height - 40 }, sp1->spell_ui);
-	spells_ui[2] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 1 * spacing, (float)game->height - 40 }, sp1->spell_ui);
-	spells_ui[3] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 2 * spacing + sw, (float)game->height - 40 }, sp1->spell_ui);
+	float ui_yp = game->height - 80;
+	spells_ui[0] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) - 2 * spacing - sw, ui_yp }, sp1->spell_ui);
+	spells_ui[1] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) - 1 * spacing, ui_yp }, sp1->spell_ui);
+	spells_ui[2] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 1 * spacing, ui_yp }, sp1->spell_ui);
+	spells_ui[3] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 2 * spacing + sw, ui_yp }, sp1->spell_ui);
+	player_exp = new ExperienceBar(Vecf{ 120,715 });
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
@@ -107,6 +109,7 @@ void PlayerCharacter::_draw() {
 		if (s)
 			s->draw();
 	}
+	player_exp->draw(Vecf{ 0,0 });
 }
 
 void PlayerCharacter::_update() {
