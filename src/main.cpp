@@ -2,6 +2,7 @@
 
 #include "Game.hpp"
 #include "PlayerCharacter.hpp"
+#include "CombatTimer.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -26,6 +27,9 @@ int main(void) {
 	scene->add_body(pc);
 	game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	game->events_manager->subscribe(EventType::MouseInput, pc);
+
+	auto* cb = new CombatTimer(120);
+	scene->uis.push_front(cb);
 
 	//Character* c1 = new Character();
 	//Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
