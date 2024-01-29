@@ -6,7 +6,8 @@
 #include <DynamicBody.hpp>
 
 enum class CharacterState {
-	IDLE
+	IDLE,
+	CHASING
 };
 
 class Character : public DynamicBody {

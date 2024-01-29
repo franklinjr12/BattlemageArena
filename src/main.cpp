@@ -3,6 +3,7 @@
 #include "Game.hpp"
 #include "PlayerCharacter.hpp"
 #include "CombatTimer.hpp"
+#include "NPC.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -31,14 +32,14 @@ int main(void) {
 	auto* cb = new CombatTimer(120);
 	scene->uis.push_front(cb);
 
-	//Character* c1 = new Character();
-	//Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
-	//c1->image = AssetsManager::get_instance()->get_image("big_demon_run_anim_f3.png");
-	//c1->rectangle = new BodyRectangle(c1_pos, c1->image->width, c1->image->height);
-	//c1->setX(c1_pos[0]);
-	//c1->setY(c1_pos[1]);
-	//c1->health_bar = new HealthBar();
-	//scene->add_body(c1);
+	NPC* c1 = new NPC();
+	Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
+	c1->image = AssetsManager::get_instance()->get_image("big_demon_run_anim_f3.png");
+	c1->rectangle = new BodyRectangle(c1_pos, c1->image->width, c1->image->height);
+	c1->setX(c1_pos[0]);
+	c1->setY(c1_pos[1]);
+	c1->health_bar = new HealthBar();
+	scene->add_body(c1);
 
 	game->current_scene = scene;
 

@@ -155,6 +155,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\NPC.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
     <ClCompile Include="src\Spell.cpp" />
     <ClCompile Include="src\SpellCooldownDisplay.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="include\ExperienceBar.hpp" />
     <ClInclude Include="include\GroupsDef.hpp" />
     <ClInclude Include="include\HealthBar.hpp" />
+    <ClInclude Include="include\NPC.hpp" />
     <ClInclude Include="include\PlayerCharacter.hpp" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\Spell.hpp" />
