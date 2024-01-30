@@ -32,5 +32,5 @@ void Character::cast_spell(int spell_num, Vecf direction) {
 	}
 }
 
-void Character::attack() {
+void Character::attack(Vecf dir) {
 }

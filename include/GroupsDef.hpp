@@ -7,5 +7,7 @@ enum class GameGroups : ObjectGroup {
 	SPELLINSTANCE,
 	CHARACTER,
 	MARKDELETE,
-	PLAYER
+	PLAYER,
+	NPC,
+	CREATURENPC
 };

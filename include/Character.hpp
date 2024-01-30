@@ -7,7 +7,8 @@
 
 enum class CharacterState {
 	IDLE,
-	CHASING
+	CHASING,
+	ATTACKING
 };
 
 class Character : public DynamicBody {
@@ -18,7 +19,7 @@ public:
 	virtual void _draw() override;
 	virtual void _update();
 	virtual void cast_spell(int spell_num, Vecf direction);
-	virtual void attack();
+	virtual void attack(Vecf dir);
 	
 	float health = 100;
 	HealthBar* health_bar = nullptr;
@@ -27,6 +28,7 @@ public:
 	float attack_cooldown_ms = 1000;
 	float attack_damage = 0;
 	CharacterState state = CharacterState::IDLE;
+	float speed_modifier = 1;
 	const float DEFAULT_VELOCITY = 4;
 	const float POSITION_STOP_THRESHOLD = 5;
 	std::vector<Spell*> spells;

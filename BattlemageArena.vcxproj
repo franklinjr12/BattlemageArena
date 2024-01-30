@@ -148,9 +148,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\BasicAttackSpell.cpp" />
     <ClCompile Include="src\BasicProjectileSpell.cpp" />
     <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\CombatTimer.cpp" />
+    <ClCompile Include="src\CreatureNPC.cpp" />
     <ClCompile Include="src\ExperienceBar.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\HealthBar.cpp" />
@@ -163,9 +165,11 @@
     <ClCompile Include="src\SpellInteraction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\BasicAttackSpell.hpp" />
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
     <ClInclude Include="include\Character.hpp" />
     <ClInclude Include="include\CombatTimer.hpp" />
+    <ClInclude Include="include\CreatureNPC.hpp" />
     <ClInclude Include="include\ExperienceBar.hpp" />
     <ClInclude Include="include\GroupsDef.hpp" />
     <ClInclude Include="include\HealthBar.hpp" />

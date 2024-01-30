@@ -21,8 +21,9 @@ public:
 	virtual void _cast(Vecf position, Vecf dir) {};
 	virtual void _process_events(std::vector<event_bytes_type> data) {};
 
-	float damage = 0;
 	bool on_cooldown = false;
+	float damage = 0;
+	float lifetime_ms = 2000;
 	Vecf direction;
 	SpellElement element = SpellElement::ENERGY;
 	SpellEffect effect = SpellEffect::NONE;
@@ -31,7 +32,6 @@ public:
 	Image* spell_ui;
 	Animation* animation;
 	Timer* timer;
-
 protected:
 	float cooldown_ms = 1;
 };
