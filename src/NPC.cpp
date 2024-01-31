@@ -16,6 +16,8 @@ void NPC::_update() {
 		player_pos[0] = game->player->getX();
 		player_pos[1] = game->player->getY();
 		if (DistanceVecf(Vecf{ getX(),getY() }, player_pos) <= DEFAULT_ATTACK_DISTANCE) {
+			vel[0] = 0;
+			vel[1] = 0;
 			state = CharacterState::ATTACKING;
 			break;
 		}

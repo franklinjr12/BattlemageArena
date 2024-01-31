@@ -5,8 +5,8 @@
 
 #include <algorithm>
 
-//SpellInstance::SpellInstance(ObjectId owner, Image* img, Vecf spawn_position, Vecf spawn_speed) {
 SpellInstance::SpellInstance(Spell* owner, Image* img, Vecf spawn_position, Vecf spawn_speed, float lifetime_ms) {
+	name = "SpellInstance";
 	this->owner = owner;
 	image = img;
 	rectangle = new BodyRectangle(spawn_position, img->width, img->height);
@@ -16,6 +16,8 @@ SpellInstance::SpellInstance(Spell* owner, Image* img, Vecf spawn_position, Vecf
 	setY(spawn_position[1]);
 	groups.push_back((ObjectGroup)GameGroups::SPELLINSTANCE);
 	lifetime_timer = new Timer(lifetime_ms);
+	EventsManager::getInstance()->subscribe(EventType::Timer, this);
+	lifetime_timer->start();
 }
 
 void SpellInstance::handle_collision(ObjectId _id) {
@@ -38,7 +40,7 @@ void SpellInstance::process_events(std::vector<event_bytes_type> data) {
 	case (event_bytes_type)EventType::Timer:
 		ObjectId income_timer = (ObjectId)data[1];
 		if (income_timer == lifetime_timer->id) {
-			should_delete = true;
+			groups.push_back((ObjectGroup)GameGroups::MARKDELETE);
 		}
 	}
 }
