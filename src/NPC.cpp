@@ -19,6 +19,7 @@ void NPC::_update() {
 			vel[0] = 0;
 			vel[1] = 0;
 			state = CharacterState::ATTACKING;
+			A2D_LOGI("NPC {} attacking", id);
 			break;
 		}
 		Vecf dir;
@@ -37,6 +38,7 @@ void NPC::_update() {
 		player_pos[1] = game->player->getY();
 		if (DistanceVecf(Vecf{ getX(),getY() }, player_pos) > DEFAULT_ATTACK_DISTANCE) {
 			state = CharacterState::CHASING;
+			A2D_LOGI("NPC {} chasing", id);
 			break;
 		}
 		Vecf dir;

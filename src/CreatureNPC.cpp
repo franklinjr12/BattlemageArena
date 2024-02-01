@@ -2,6 +2,7 @@
 #include "BasicAttackSpell.hpp"
 
 #include <AssetsManager.hpp>
+#include <Logger.hpp>
 
 CreatureNPC::CreatureNPC(Vecf c_pos, Image* c_image, float c_damage, float c_speed, float c_hp) {
 	if (c_image == nullptr)

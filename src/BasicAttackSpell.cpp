@@ -18,5 +18,6 @@ void BasicAttackSpell::_cast(Vecf position, Vecf dir) {
 	vel[0] = dir[0] * projectile_velocity;
 	vel[1] = dir[1] * projectile_velocity;
 	SpellInstance* spell = new SpellInstance(this, image, position, vel, lifetime_ms);
+	A2D_LOGI("SpellInstance id {} added", spell->id);
 	game->current_scene->add_body(spell);
 }

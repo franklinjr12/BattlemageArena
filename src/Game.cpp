@@ -35,4 +35,13 @@ void Game::game_draw() {
 	pos[1] += 20;
 	//sprintf_s(text_buffer, "px: %03d py: %03d", (int)player->getX(), (int)player->getY());
 	//font->print(pos, (char*)text_buffer);
+	Point p;
+	p.x = mouse_pos[0];
+	p.y = mouse_pos[1];
+	for (auto* b : current_scene->bodies) {
+		if (isPointRectColliding(*b->rectangle, p)) {
+			sprintf_s(text_buffer, "id: %lu", (uint64_t)b->id);
+			font->print(p.pos, (char*)text_buffer, FULL_WHITE);
+		}
+	}
 }

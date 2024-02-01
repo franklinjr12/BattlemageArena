@@ -3,7 +3,7 @@
 #include "Character.hpp"
 #include "SpellInteraction.hpp"
 
-#include <algorithm>
+#include <Logger.hpp>
 
 SpellInstance::SpellInstance(Spell* owner, Image* img, Vecf spawn_position, Vecf spawn_speed, float lifetime_ms) {
 	name = "SpellInstance";
@@ -41,6 +41,7 @@ void SpellInstance::process_events(std::vector<event_bytes_type> data) {
 		ObjectId income_timer = (ObjectId)data[1];
 		if (income_timer == lifetime_timer->id) {
 			groups.push_back((ObjectGroup)GameGroups::MARKDELETE);
+			A2D_LOGI("SpellInstance id {} marked to delete", id);
 		}
 	}
 }
