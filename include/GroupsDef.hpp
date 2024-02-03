@@ -9,5 +9,6 @@ enum class GameGroups : ObjectGroup {
 	MARKDELETE,
 	PLAYER,
 	NPC,
-	CREATURENPC
+	CREATURENPC,
+	MAGENPC
 };

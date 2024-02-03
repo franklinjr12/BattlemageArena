@@ -8,5 +8,6 @@ public:
 	NPC();
 	void _update();
 
-	const float DEFAULT_ATTACK_DISTANCE = 50;
+	float attack_distance;
+	const float DEFAULT_ATTACK_DISTANCE = 200;
 };

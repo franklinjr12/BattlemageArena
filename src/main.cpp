@@ -5,6 +5,7 @@
 #include "CombatTimer.hpp"
 #include "NPC.hpp"
 #include "CreatureNPC.hpp"
+#include "MageNPC.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -42,8 +43,12 @@ int main(void) {
 	//c1->health_bar = new HealthBar();
 	//scene->add_body(c1);
 
+	//Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
+	//CreatureNPC* c1 = new CreatureNPC(c1_pos);
+	//scene->add_body(c1);
+
 	Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
-	CreatureNPC* c1 = new CreatureNPC(c1_pos);
+	MageNPC* c1 = new MageNPC(c1_pos);
 	scene->add_body(c1);
 
 	game->current_scene = scene;

@@ -5,6 +5,7 @@
 NPC::NPC() {
 	state = CharacterState::CHASING;
 	groups.push_back((ObjectGroup)GameGroups::NPC);
+	attack_distance = DEFAULT_ATTACK_DISTANCE;
 }
 
 void NPC::_update() {
@@ -15,7 +16,7 @@ void NPC::_update() {
 		Vecf player_pos;
 		player_pos[0] = game->player->getX();
 		player_pos[1] = game->player->getY();
-		if (DistanceVecf(Vecf{ getX(),getY() }, player_pos) <= DEFAULT_ATTACK_DISTANCE) {
+		if (DistanceVecf(Vecf{ getX(),getY() }, player_pos) <= attack_distance) {
 			vel[0] = 0;
 			vel[1] = 0;
 			state = CharacterState::ATTACKING;
@@ -36,7 +37,7 @@ void NPC::_update() {
 		Vecf player_pos;
 		player_pos[0] = game->player->getX();
 		player_pos[1] = game->player->getY();
-		if (DistanceVecf(Vecf{ getX(),getY() }, player_pos) > DEFAULT_ATTACK_DISTANCE) {
+		if (DistanceVecf(Vecf{ getX(),getY() }, player_pos) > attack_distance) {
 			state = CharacterState::CHASING;
 			A2D_LOGI("NPC {} chasing", id);
 			break;
