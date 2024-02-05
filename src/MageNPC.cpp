@@ -21,11 +21,13 @@ MageNPC::MageNPC(Vecf c_pos, Image* c_image, float c_damage, float c_speed, floa
 
 void MageNPC::attack(Vecf dir) {
 	Vecf cast_pos = { getX(),getY() };
-	//if (dir[0] > 0)
-	//	cast_pos[0] += rectangle->w * 1.5;
-	//else
-	//	cast_pos[0] -= rectangle->w * 1.5;
+	// might need to adjust to the body size
 	cast_pos[0] += dir[0] * 50;
 	cast_pos[1] += dir[1] * 50;
-	spells[0]->cast(cast_pos, dir);
+	for (int i = 0; i < spells.size(); i++) {
+		if (!spells[i]->on_cooldown) {
+			spells[i]->cast(cast_pos, dir);
+			break;
+		}
+	}
 }
