@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "GroupsDef.hpp"
+#include "NPC.hpp"
 
 #include <AssetsManager.hpp>
 
@@ -13,12 +14,18 @@ Game::Game() {
 void Game::game_loop() {
 	std::vector<ObjectId> bodies_to_remove;
 	for (auto* b : current_scene->bodies) {
-		for (auto& e : b->groups)
-			if (e == (ObjectGroup)GameGroups::MARKDELETE) {
-				if(b->name == "SpellInstance")
-					A2D_LOGI("Removing si {}", (uint64_t)b->id);
-				bodies_to_remove.push_back(b->id);
+		ObjectGroup g = (ObjectGroup)GameGroups::MARKDELETE;
+		if (VectorHasGroupId(b->groups, g)) {
+			// if is a NPC should give some exp to player				
+			g = (ObjectGroup)GameGroups::NPC;
+			if (VectorHasGroupId(b->groups, g)) {
+				npc_total_kills++;
+				experience_gained += ((NPC*)b)->drop_experience;
 			}
+			if(b->name == "SpellInstance")
+				A2D_LOGI("Removing si {}", (uint64_t)b->id);
+			bodies_to_remove.push_back(b->id);
+		}
 	}
 	for (ObjectId& b : bodies_to_remove)
 		current_scene->remove_body(b);

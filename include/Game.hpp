@@ -15,6 +15,8 @@ public:
 
 	Font* font;
 	PlayerCharacter* player;
+	int npc_total_kills = 0;
+	float experience_gained = 0;
 };
 
 extern Game* game;

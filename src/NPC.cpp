@@ -9,6 +9,10 @@ NPC::NPC() {
 }
 
 void NPC::_update() {
+	if (health_bar->get_hp() <= 0) {
+		A2D_LOGI("NPC id {} {} died", id, name);
+		groups.push_back((ObjectGroup)GameGroups::MARKDELETE);
+	}
 	switch (state) {
 	case CharacterState::IDLE:
 		break;

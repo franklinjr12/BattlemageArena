@@ -10,4 +10,5 @@ public:
 
 	float attack_distance;
 	const float DEFAULT_ATTACK_DISTANCE = 200;
+	float drop_experience = 0;
 };
