@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClInclude Include="include\BasicAttackSpell.hpp" />
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
+    <ClInclude Include="include\BattlemageArenaConstants.hpp" />
     <ClInclude Include="include\Character.hpp" />
     <ClInclude Include="include\CombatTimer.hpp" />
     <ClInclude Include="include\CreatureNPC.hpp" />

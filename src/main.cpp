@@ -6,6 +6,7 @@
 #include "NPC.hpp"
 #include "CreatureNPC.hpp"
 #include "MageNPC.hpp"
+#include "BattlemageArenaConstants.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -23,7 +24,7 @@ int main(void) {
 	Image* background = asset_man->get_image("battle_arena.png");
 	background->resize(game->width, game->height);
 	Scene* arena_scene = new Scene(camera, background, DEFAULT_SCREEN_WIDTH * 2, DEFAULT_SCREEN_HEIGHT * 2);
-	arena_scene->name = "arena";
+	arena_scene->name = ARENA_FIGHT_NAME;
 	arena_scene->gravity = 0;
 
 	PlayerCharacter* pc = new PlayerCharacter();
@@ -52,7 +53,14 @@ int main(void) {
 	MageNPC* c1 = new MageNPC(c1_pos);
 	arena_scene->add_body(c1);
 
+	Image* background_results = asset_man->get_image("battle_arena_results.png");
+	background_results->resize(game->width, game->height);
+	Scene* arena_results_scene = new Scene(camera, background_results, game->width, game->height);
+	arena_results_scene->name = ARENA_RESULTS_NAME;
+
 	game->current_scene = arena_scene;
+	game->arena_fight_scene = arena_scene;
+	game->arena_results_scene = arena_results_scene;
 
 	game->run();
 
