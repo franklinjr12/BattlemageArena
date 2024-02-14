@@ -12,47 +12,6 @@ Game::Game() {
 }
 
 void Game::game_loop() {
-	if (current_scene->name == ARENA_FIGHT_NAME) {
-		std::vector<ObjectId> bodies_to_remove;
-		bool arena_cleared = true;
-		for (auto* b : current_scene->bodies) {
-			// check if there is still at least one NPC, if not level is completed
-			ObjectGroup g = (ObjectGroup)GameGroups::NPC;
-			if (VectorHasGroupId(b->groups, g)) {
-				arena_cleared = false;
-			}
-			g = (ObjectGroup)GameGroups::MARKDELETE;
-			if (VectorHasGroupId(b->groups, g)) {
-				// if is a NPC should give some exp to player				
-				g = (ObjectGroup)GameGroups::NPC;
-				if (VectorHasGroupId(b->groups, g)) {
-					npc_total_kills++;
-					experience_gained += ((NPC*)b)->drop_experience;
-				}
-				if (b->name == "SpellInstance")
-					A2D_LOGI("Removing si {}", (uint64_t)b->id);
-				bodies_to_remove.push_back(b->id);
-			}
-		}
-		for (ObjectId& b : bodies_to_remove)
-			current_scene->remove_body(b);
-		// there are no more NPCs to fight show finish arena screen
-		if (arena_cleared) {
-			// give exp to the player
-			for (auto* b : current_scene->bodies) {
-				ObjectGroup g = (ObjectGroup)GameGroups::PLAYER;
-				if (VectorHasGroupId(b->groups, g)) {
-					PlayerCharacter* p = (PlayerCharacter*)b;
-					p->player_exp->add(experience_gained);
-					experience_gained = 0;
-				}
-			}
-			current_scene = arena_results_scene;
-		}
-	}
-	if (current_scene->name == ARENA_FIGHT_NAME) {
-
-	}
 }
 
 void Game::game_draw() {

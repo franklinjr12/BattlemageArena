@@ -148,6 +148,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ArenaFightScene.cpp" />
+    <ClCompile Include="src\ArenaResultsScene.cpp" />
     <ClCompile Include="src\BasicAttackSpell.cpp" />
     <ClCompile Include="src\BasicProjectileSpell.cpp" />
     <ClCompile Include="src\Character.cpp" />
@@ -166,6 +168,8 @@
     <ClCompile Include="src\SpellInteraction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ArenaFightScene.hpp" />
+    <ClInclude Include="include\ArenaResultsScene.hpp" />
     <ClInclude Include="include\BasicAttackSpell.hpp" />
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
     <ClInclude Include="include\BattlemageArenaConstants.hpp" />
