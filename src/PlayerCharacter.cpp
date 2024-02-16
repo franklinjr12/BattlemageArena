@@ -1,6 +1,7 @@
 #include "PlayerCharacter.hpp"
 #include "Game.hpp"
 #include "BasicProjectileSpell.hpp"
+#include "BattlemageArenaConstants.hpp"
 
 #include <AssetsManager.hpp>
 #include <ArcaneUtils.hpp>
@@ -54,24 +55,6 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 		}
 		break;
 	case (event_bytes_type)EventType::KeyboardInput:
-		//if (data[1] == GLFW_PRESS || data[1] == GLFW_REPEAT) {
-		//	switch (data[2]) {
-		//	case GLFW_KEY_UP:
-		//		vel[1] = -PLAYER_DEFAULT_VELOCITY;
-		//		break;
-		//	case GLFW_KEY_DOWN:
-		//		vel[1] = PLAYER_DEFAULT_VELOCITY;
-		//		break;
-		//	case GLFW_KEY_LEFT:
-		//		vel[0] = -PLAYER_DEFAULT_VELOCITY;
-		//		break;
-		//	case GLFW_KEY_RIGHT:
-		//		vel[0] = PLAYER_DEFAULT_VELOCITY;
-		//		break;
-		//	default:
-		//		break;
-		//	}
-		//}
 		if (data[1] == GLFW_RELEASE) {
 			switch (data[2]) {
 			case GLFW_KEY_Q: {
@@ -85,18 +68,26 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 				cast_spell(0, dir);
 				break;
 			}
-						   //case GLFW_KEY_UP:
-						   //case GLFW_KEY_DOWN:
-						   //	vel[1] = 0;
-						   //	break;
-						   //case GLFW_KEY_LEFT:
-						   //case GLFW_KEY_RIGHT:
-						   //	vel[0] = 0;
-						   //	break;
 			default:
 				break;
 			}
 		}
+	case (event_bytes_type)EventType::SceneChanged: {
+		std::string scene_name = "";
+		int size = (int)data[1];
+		for (int i = 2; i < 2 + size; i++) {
+			scene_name += (char)data[i];
+		}
+		if (scene_name == ARENA_FIGHT_NAME) {
+			EventsManager::getInstance()->subscribe(EventType::KeyboardInput, this);
+			EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
+		}
+		else if (scene_name == ARENA_RESULTS_NAME) {
+			EventsManager::getInstance()->unsubscribe(EventType::KeyboardInput, this);
+			EventsManager::getInstance()->unsubscribe(EventType::MouseInput, this);
+		}
+	}
+	break;
 	}
 }
 

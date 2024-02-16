@@ -32,6 +32,7 @@ int main(void) {
 	arena_scene->add_body(pc);
 	game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	game->events_manager->subscribe(EventType::MouseInput, pc);
+	game->events_manager->subscribe(EventType::SceneChanged, pc);
 
 	auto* cb = new CombatTimer(120);
 	arena_scene->uis.push_front(cb);
