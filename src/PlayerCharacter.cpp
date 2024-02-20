@@ -36,7 +36,7 @@ PlayerCharacter::PlayerCharacter() {
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 	switch (data[0]) {
-	case (event_bytes_type)EventType::MouseInput:
+	case (event_bytes_type)EventType::MouseInput: {
 		// move command
 		if (data[1] == GLFW_PRESS && data[2] == GLFW_MOUSE_BUTTON_RIGHT) {
 			Vecf mouse_pos;
@@ -53,8 +53,9 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 			vel[0] = dir[0] * PLAYER_DEFAULT_VELOCITY;
 			vel[1] = dir[1] * PLAYER_DEFAULT_VELOCITY;
 		}
-		break;
-	case (event_bytes_type)EventType::KeyboardInput:
+	}
+	break;
+	case (event_bytes_type)EventType::KeyboardInput: {
 		if (data[1] == GLFW_RELEASE) {
 			switch (data[2]) {
 			case GLFW_KEY_Q: {
@@ -72,6 +73,8 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 				break;
 			}
 		}
+	}
+	break;
 	case (event_bytes_type)EventType::SceneChanged: {
 		std::string scene_name = "";
 		int size = (int)data[1];

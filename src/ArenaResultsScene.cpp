@@ -2,8 +2,27 @@
 #include "BattlemageArenaConstants.hpp"
 #include "Game.hpp"
 
+#include <AssetsManager.hpp>
+
 ArenaResultsScene::ArenaResultsScene(Camera* camera, Image* background, uint32_t w, uint32_t h) : Scene(camera, background, w, h) {
 	name = ARENA_RESULTS_NAME;
+	const int SPACING = 80;
+	Vecf position = { game->width / 2, SPACING };
+	Image* img = AssetsManager::get_instance()->get_image("results_ui.png");
+	time_display = new TextDisplay(position, img, "000s");
+	uis.push_front(time_display);
+	position[1] += SPACING;
+	enemies_count_display = new TextDisplay(position, img, "000 killed");
+	uis.push_front(enemies_count_display);
+	position[1] += SPACING;
+	difficulty_display = new TextDisplay(position, img, "normal difficulty");
+	uis.push_front(difficulty_display);
+	position[1] += SPACING;
+	gold_display = new TextDisplay(position, img, "000 gold");
+	uis.push_front(gold_display);
+	position[1] += SPACING;
+	experience_display = new TextDisplay(position, img, "000 exp");
+	uis.push_front(experience_display);
 }
 
 void ArenaResultsScene::_update()
