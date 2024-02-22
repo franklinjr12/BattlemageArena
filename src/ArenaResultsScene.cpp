@@ -10,7 +10,6 @@ ArenaResultsScene::ArenaResultsScene(Camera* camera, Image* background, uint32_t
 	Font* font = AssetsManager::get_instance()->get_default_font();
 	Vecf position = { game->width / 2, SPACING };
 	Image* img = AssetsManager::get_instance()->get_image("transparent_10x10.png");
-	//Image* img = AssetsManager::get_instance()->get_image("results_ui.png");
 	time_display = new TextDisplay(position, img, "000s", font);
 	uis.push_front(time_display);
 	position[1] += SPACING;

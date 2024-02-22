@@ -3,12 +3,19 @@
 #include "Game.hpp"
 #include "GroupsDef.hpp"
 #include "NPC.hpp"
+#include "CombatTimer.hpp"
 
 #include <ArcaneUtils.hpp>
+
+CombatTimer* cb;
 
 ArenaFightScene::ArenaFightScene(Camera* camera, Image* background, uint32_t w, uint32_t h) : Scene(camera, background, w, h) {
 	name = ARENA_FIGHT_NAME;
 	gravity = 0;
+	//auto* cb = new CombatTimer(120);
+	cb = new CombatTimer(120);
+	uis.push_front(cb);
+
 }
 
 void ArenaFightScene::_update() {
@@ -25,8 +32,8 @@ void ArenaFightScene::_update() {
 			// if is a NPC should give some exp to player				
 			g = (ObjectGroup)GameGroups::NPC;
 			if (VectorHasGroupId(b->groups, g)) {
-				game->npc_total_kills++;
-				game->experience_gained += ((NPC*)b)->drop_experience;
+				game->arena_results_stats.enemies_killed++;
+				game->arena_results_stats.experience_earned += ((NPC*)b)->drop_experience;
 			}
 			if (b->name == "SpellInstance")
 				A2D_LOGI("Removing si {}", (uint64_t)b->id);
@@ -42,10 +49,17 @@ void ArenaFightScene::_update() {
 			ObjectGroup g = (ObjectGroup)GameGroups::PLAYER;
 			if (VectorHasGroupId(b->groups, g)) {
 				PlayerCharacter* p = (PlayerCharacter*)b;
-				p->player_exp->add(game->experience_gained);
-				game->experience_gained = 0;
+				p->player_exp->add(game->arena_results_stats.experience_earned);
+				// should clear here?
+				//game->arena_results_stats.experience_earned = 0;
 			}
 		}
+		// fill arena cleared stats
+		game->arena_results_stats.cleared_time = cb->elapsed_time;
+		// enemies killed is already done
+		// difficulty is already done
+		game->arena_results_stats.gold_earned = gold_earned;
+		// expererience is already done
 		game->change_scene(ARENA_RESULTS_NAME);
 	}
 }

@@ -170,6 +170,7 @@
   <ItemGroup>
     <ClInclude Include="include\ArenaFightScene.hpp" />
     <ClInclude Include="include\ArenaResultsScene.hpp" />
+    <ClInclude Include="include\ArenaResultsStats.hpp" />
     <ClInclude Include="include\BasicAttackSpell.hpp" />
     <ClInclude Include="include\BasicProjectileSpell.hpp" />
     <ClInclude Include="include\BattlemageArenaConstants.hpp" />

@@ -58,8 +58,8 @@ int main(void) {
 	background_results->resize(game->width, game->height);
 	ArenaResultsScene* arena_results_scene = new ArenaResultsScene(camera, background_results, game->width, game->height);
 
-	//game->current_scene = arena_scene;
-	game->current_scene = arena_results_scene;
+	game->current_scene = arena_scene;
+	//game->current_scene = arena_results_scene;
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PlayerCharacter.hpp"
+#include "ArenaResultsStats.hpp"
 
 #include <Application.hpp>
 
@@ -15,10 +16,9 @@ public:
 
 	Font* font;
 	PlayerCharacter* player;
-	int npc_total_kills = 0;
-	float experience_gained = 0;
 	Scene* arena_fight_scene;
 	Scene* arena_results_scene;
+	ArenaResultsStats arena_results_stats;
 };
 
 extern Game* game;

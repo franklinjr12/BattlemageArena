@@ -134,5 +134,8 @@
     <ClInclude Include="include\ArenaFightScene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ArenaResultsStats.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
