@@ -54,7 +54,7 @@ int main(void) {
 	MageNPC* c1 = new MageNPC(c1_pos);
 	arena_scene->add_body(c1);
 
-	Image* background_results = asset_man->get_image("battle_arena_results.png");
+	Image* background_results = asset_man->get_image("gray_background.png");
 	background_results->resize(game->width, game->height);
 	ArenaResultsScene* arena_results_scene = new ArenaResultsScene(camera, background_results, game->width, game->height);
 

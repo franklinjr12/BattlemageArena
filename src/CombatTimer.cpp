@@ -33,5 +33,5 @@ void CombatTimer::draw() {
 void CombatTimer::_update() {
 	auto cur = start_time + combat_time - system_clock::now();
 	td->text = convert_time_to_s(cur);
-	elapsed_time = (int)duration_cast<seconds>(start_time - system_clock::now()).count();
+	elapsed_time = (int)duration_cast<seconds>(system_clock::now() - start_time).count();
 }
