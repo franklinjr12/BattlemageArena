@@ -5,8 +5,10 @@
 #include "CreatureNPCFactory.hpp"
 #include "MageNPCFactory.hpp"
 #include "Game.hpp"
+#include "CombatTimer.hpp"
 
 #include <AssetsManager.hpp>
+#include <vector>
 
 ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
     int num_creatures = 0;
@@ -16,7 +18,7 @@ ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
         num_mages = 1;
     }
     else if (difficulty == ARENA_DIFFICULTY_NORMAL) {
-        num_creatures = 4;
+        num_creatures = 3;
         num_mages = 0;
     }
     else if (difficulty == ARENA_DIFFICULTY_HARD) {
@@ -27,10 +29,21 @@ ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
     Image* background = AssetsManager::get_instance()->get_image("battle_arena.png");
     background->resize(game->width, game->height);
     auto* scene = new ArenaFightScene(camera, background, game->width, game->height);
+    auto* cb = new CombatTimer(120);
+    scene->uis.push_front(cb);
+    game->arena_results_stats.difficulty = difficulty;
+    std::vector<float*> enemies_positions;
+    int enemies_positions_index = 0;
+    enemies_positions.push_back(Vecf{ (float)game->width / 2 - game->width / 5, (float)game->height / 2 });
+    enemies_positions.push_back(Vecf{ (float)game->width / 2 , (float)game->height / 2 - game->height / 5 });
+    enemies_positions.push_back(Vecf{ (float)game->width / 2 + game->width / 5, (float)game->height / 2 });
+    enemies_positions.push_back(Vecf{ (float)game->width / 2 , (float)game->height / 2  + game->height / 5});
     // need some care to not generate enemies in the correct position
-    for (int i = 0; i < num_creatures; i++)
-        scene->add_body(CreatureNPCFactory::create());
-    for (int i = 0; i < num_mages; i++)
-        scene->add_body(MageNPCFactory::create());
+    for (int i = 0; i < num_creatures; i++, enemies_positions_index++) {
+        scene->add_body(CreatureNPCFactory::create(enemies_positions[enemies_positions_index]));
+    }
+    for (int i = 0; i < num_mages; i++, enemies_positions_index++) {
+        scene->add_body(MageNPCFactory::create(enemies_positions[enemies_positions_index]));
+    }
     return scene;
 }

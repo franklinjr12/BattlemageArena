@@ -5,6 +5,6 @@
 class MageNPCFactory {
 public:
 
-	static MageNPC* create();
+	static MageNPC* create(Vecf position = nullptr);
 };
 

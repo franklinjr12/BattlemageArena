@@ -5,6 +5,6 @@
 class CreatureNPCFactory {
 public:
 
-	static CreatureNPC* create();
+	static CreatureNPC* create(Vecf position = nullptr);
 };
 
