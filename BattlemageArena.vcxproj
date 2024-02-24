@@ -148,6 +148,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ArenaFightSceneFactory.cpp" />
+    <ClCompile Include="src\CreatureNPCFactory.cpp" />
+    <ClCompile Include="src\MageNPCFactory.cpp" />
     <ClCompile Include="src\ArenaFightScene.cpp" />
     <ClCompile Include="src\ArenaResultsScene.cpp" />
     <ClCompile Include="src\BasicAttackSpell.cpp" />
@@ -168,6 +171,8 @@
     <ClCompile Include="src\SpellInteraction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ArenaFightSceneFactory.hpp" />
+    <ClInclude Include="include\CreatureNPCFactory.hpp" />
     <ClInclude Include="include\ArenaFightScene.hpp" />
     <ClInclude Include="include\ArenaResultsScene.hpp" />
     <ClInclude Include="include\ArenaResultsStats.hpp" />
@@ -190,6 +195,7 @@
     <ClInclude Include="include\SpellElement.hpp" />
     <ClInclude Include="include\SpellInstance.hpp" />
     <ClInclude Include="include\SpellInteraction.hpp" />
+    <ClInclude Include="include\MageNPCFactory.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

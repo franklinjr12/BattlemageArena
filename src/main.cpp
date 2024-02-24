@@ -8,6 +8,7 @@
 #include "MageNPC.hpp"
 #include "BattlemageArenaConstants.hpp"
 #include "ArenaFightScene.hpp"
+#include "ArenaFightSceneFactory.hpp"
 #include "ArenaResultsScene.hpp"
 
 #include <ArcaneVersion.hpp>
@@ -22,10 +23,11 @@ int main(void) {
 	
 	auto asset_man = AssetsManager::get_instance();
 
-	Camera* camera = new Camera(0, 0, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
-	Image* background = asset_man->get_image("battle_arena.png");
-	background->resize(game->width, game->height);
-	ArenaFightScene* arena_scene = new ArenaFightScene(camera, background, DEFAULT_SCREEN_WIDTH * 2, DEFAULT_SCREEN_HEIGHT * 2);
+	//Camera* camera = new Camera(0, 0, DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
+	//Image* background = asset_man->get_image("battle_arena.png");
+	//background->resize(game->width, game->height);
+	//ArenaFightScene* arena_scene = new ArenaFightScene(camera, background, DEFAULT_SCREEN_WIDTH * 2, DEFAULT_SCREEN_HEIGHT * 2);
+	ArenaFightScene* arena_scene = ArenaFightSceneFactory::create(ARENA_DIFFICULTY_EASY);
 
 	PlayerCharacter* pc = new PlayerCharacter();
 	game->player = pc;
@@ -50,12 +52,13 @@ int main(void) {
 	//CreatureNPC* c1 = new CreatureNPC(c1_pos);
 	//arena_scene->add_body(c1);
 
-	Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
-	MageNPC* c1 = new MageNPC(c1_pos);
-	arena_scene->add_body(c1);
+	//Vecf c1_pos = { DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2 };
+	//MageNPC* c1 = new MageNPC(c1_pos);
+	//arena_scene->add_body(c1);
 
 	Image* background_results = asset_man->get_image("gray_background.png");
 	background_results->resize(game->width, game->height);
+	Camera* camera = new Camera(0, 0, game->width, game->height);
 	ArenaResultsScene* arena_results_scene = new ArenaResultsScene(camera, background_results, game->width, game->height);
 
 	game->current_scene = arena_scene;
