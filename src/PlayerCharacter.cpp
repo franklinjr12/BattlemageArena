@@ -69,6 +69,16 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 				cast_spell(0, dir);
 				break;
 			}
+			case GLFW_KEY_SPACE: {
+				Vecf dir;
+				dir[0] = (float)game->mouse_pos[0] - getX();
+				dir[1] = (float)game->mouse_pos[1] - getY();
+				float dir_mag = MagVecf(dir);
+				dir[0] = dir[0] / dir_mag;
+				dir[1] = dir[1] / dir_mag;
+				do_dash(dir);
+				break;
+			}
 			default:
 				break;
 			}

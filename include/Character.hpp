@@ -11,6 +11,24 @@ enum class CharacterState {
 	ATTACKING
 };
 
+class CharacterAttributes {
+public:
+	int will = 1; //hp
+	int arcane = 1; //damage
+	int dexterity = 1; //cooldowns
+	int luck = 1; //critical hits
+	int fitess = 1; //speed
+};
+
+class CharacterDash : public Object {
+public:
+
+	bool cast();
+	void process_events(std::vector<event_bytes_type> data);
+	bool on_cooldown = false;
+	Timer* dash_timer = nullptr;
+};
+
 class Character : public DynamicBody {
 public:
 	
@@ -20,11 +38,13 @@ public:
 	virtual void _update();
 	virtual void cast_spell(int spell_num, Vecf direction);
 	virtual void attack(Vecf dir);
+	bool do_dash(Vecf dash_direction);
 	
 	float health = 100;
 	HealthBar* health_bar = nullptr;
 	Vecf set_position;
 	float dash_cooldown_ms = 1000;
+	CharacterDash dash;
 	float attack_cooldown_ms = 1000;
 	float attack_damage = 0;
 	CharacterState state = CharacterState::IDLE;

@@ -12,7 +12,6 @@ CombatTimer* cb;
 ArenaFightScene::ArenaFightScene(Camera* camera, Image* background, uint32_t w, uint32_t h) : Scene(camera, background, w, h) {
 	name = ARENA_FIGHT_NAME;
 	gravity = 0;
-	//auto* cb = new CombatTimer(120);
 	cb = new CombatTimer(120);
 	uis.push_front(cb);
 

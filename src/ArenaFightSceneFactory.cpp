@@ -5,7 +5,6 @@
 #include "CreatureNPCFactory.hpp"
 #include "MageNPCFactory.hpp"
 #include "Game.hpp"
-#include "CombatTimer.hpp"
 
 #include <AssetsManager.hpp>
 #include <vector>
@@ -29,8 +28,6 @@ ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
     Image* background = AssetsManager::get_instance()->get_image("battle_arena.png");
     background->resize(game->width, game->height);
     auto* scene = new ArenaFightScene(camera, background, game->width, game->height);
-    auto* cb = new CombatTimer(120);
-    scene->uis.push_front(cb);
     game->arena_results_stats.difficulty = difficulty;
     std::vector<float*> enemies_positions;
     int enemies_positions_index = 0;
