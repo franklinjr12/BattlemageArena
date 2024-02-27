@@ -23,6 +23,7 @@ public:
 class CharacterDash : public Object {
 public:
 
+	CharacterDash();
 	bool cast();
 	void process_events(std::vector<event_bytes_type> data);
 	bool on_cooldown = false;

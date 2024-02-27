@@ -2,6 +2,7 @@
 
 #include <ArcaneUtils.hpp>
 #include <Logger.hpp>
+#include <EventsManager.hpp>
 
 Character::Character() {
 	groups.push_back((ObjectGroup)GameGroups::CHARACTER);
@@ -40,13 +41,17 @@ void Character::attack(Vecf dir) {
 bool Character::do_dash(Vecf dash_direction) {
 	if (dash.cast()) {
 		Vecf final_position;
-		final_position[0] = getX() + dash_direction[0] * DEFAULT_VELOCITY * 100;
+		final_position[0] = getX() + dash_direction[0] * DEFAULT_VELOCITY * 20;
 		setX(final_position[0]);
-		final_position[1] = getY() + dash_direction[1] * DEFAULT_VELOCITY * 100;
+		final_position[1] = getY() + dash_direction[1] * DEFAULT_VELOCITY * 20;
 		setY(final_position[1]);
 		return true;
 	}
 	return false;
+}
+
+CharacterDash::CharacterDash() {
+	EventsManager::getInstance()->subscribe(EventType::Timer, this);
 }
 
 bool CharacterDash::cast() {

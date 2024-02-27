@@ -3,9 +3,9 @@
 #include "Game.hpp"
 #include "PlayerCharacter.hpp"
 #include "BattlemageArenaConstants.hpp"
-#include "ArenaFightScene.hpp"
 #include "ArenaFightSceneFactory.hpp"
 #include "ArenaResultsScene.hpp"
+#include "ArenaTestScene.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -32,8 +32,15 @@ int main(void) {
 	Camera* camera = new Camera(0, 0, game->width, game->height);
 	ArenaResultsScene* arena_results_scene = new ArenaResultsScene(camera, background_results, game->width, game->height);
 
-	game->current_scene = arena_scene;
+	Image* background_test = asset_man->get_image("battle_arena.png");
+	background_test->resize(game->width, game->height);
+	Camera* camera2 = new Camera(0, 0, game->width, game->height);
+	auto* arena_test_scene = new ArenaTestScene(camera, background_results, game->width, game->height);
+	arena_test_scene->add_body(pc);
+
+	//game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
+	game->current_scene = arena_test_scene;
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
 
