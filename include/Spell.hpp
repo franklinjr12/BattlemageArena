@@ -13,7 +13,7 @@ public:
 
 	Spell(float cooldown_ms = 1000);
 
-	bool cast(Vecf position, Vecf dir);
+	bool cast(Vecf position, Vecf dir, float extra_damage=1);
 	void process_events(std::vector<event_bytes_type> data);
 	void set_cooldown(float ms);
 	float get_cooldown();
@@ -23,6 +23,7 @@ public:
 
 	bool on_cooldown = false;
 	float damage = 0;
+	float extra_damage = 0;
 	float lifetime_ms = 2000;
 	Vecf direction;
 	SpellElement element = SpellElement::ENERGY;

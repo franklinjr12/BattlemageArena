@@ -54,4 +54,5 @@ public:
 	const float POSITION_STOP_THRESHOLD = 5;
 	std::vector<Spell*> spells;
 	std::vector<SpellEffect*> effects_applied;
+	CharacterAttributes attributes;
 };

@@ -13,11 +13,13 @@ Spell::Spell(float cooldown_ms) {
 	spell_ui = nullptr;
 }
 
-bool Spell::cast(Vecf position, Vecf dir) {
+bool Spell::cast(Vecf position, Vecf dir, float extra_damage) {
 	if (on_cooldown)
 		return false;
 	A2D_LOGI("Spell id {} on cooldown", id);
 	on_cooldown = true;
+	if (extra_damage != 1)
+		this->extra_damage = damage + (damage * extra_damage / 10);
 	_cast(position, dir);
 	timer->reset();
 	return true;
