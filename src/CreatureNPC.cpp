@@ -27,5 +27,5 @@ void CreatureNPC::attack(Vecf dir){
 	//	cast_pos[0] -= rectangle->w * 1.5;
 	cast_pos[0] += dir[0] * 50;
 	cast_pos[1] += dir[1] * 50;
-	spells[0]->cast(cast_pos, dir);
+	spells[0]->cast(cast_pos, dir, attributes.arcane);
 }
