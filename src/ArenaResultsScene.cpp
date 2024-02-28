@@ -25,7 +25,13 @@ ArenaResultsScene::ArenaResultsScene(Camera* camera, Image* background, uint32_t
 	position[1] += SPACING;
 	experience_display = new TextDisplay(position, img, "000 exp", font);
 	uis.push_front(experience_display);
+	position[1] += SPACING;
+	auto* button_image = AssetsManager::get_instance()->get_image("basic_button.png");
+	//close_results_button = new Button(position, button_image, button_image->width, button_image->height);
+	close_results_button = new Button(position, button_image);
+	uis.push_front(close_results_button);
 	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
+	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 }
 
 void ArenaResultsScene::_update()
@@ -54,6 +60,14 @@ void ArenaResultsScene::_process_events(std::vector<event_bytes_type> data) {
 			gold_display->text = std::format("{} gold", res.gold_earned);
 			experience_display->text = std::format("{} exp", res.experience_earned);
 		}
+		break;
+	}
+	case (event_bytes_type)EventType::ButtonClicked: {
+		ObjectId btn_id = (ObjectId)data[1];
+		if (btn_id == close_results_button->id) {
+			game->change_scene(SHOP_NAME);
+		}
+		break;
 	}
 	}
 }

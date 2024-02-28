@@ -12,7 +12,7 @@
 #include <iostream>
 
 int main(void) {
-	printf("Running with arcane %s\n", arcane_version_string().c_str());
+	printf("Running with arcane %s!\n", arcane_version_string().c_str());
 
 	game = new Game();
 	
@@ -38,11 +38,18 @@ int main(void) {
 	auto* arena_test_scene = new ArenaTestScene(camera, background_results, game->width, game->height);
 	arena_test_scene->add_body(pc);
 
-	//game->current_scene = arena_scene;
+	Image* background_shop = asset_man->get_image("gray_background.png");
+	background_shop->resize(game->width, game->height);
+	Camera* camera_shop = new Camera(0, 0, game->width, game->height);
+	auto* shop_scene = new Scene(camera_shop, background_shop, game->width, game->height);
+
+	game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
-	game->current_scene = arena_test_scene;
+	//game->current_scene = arena_test_scene;
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
+	game->scenes.push_back(arena_test_scene);
+	game->scenes.push_back(shop_scene);
 
 	game->run();
 
