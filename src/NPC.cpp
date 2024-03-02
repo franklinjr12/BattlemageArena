@@ -33,8 +33,11 @@ void NPC::_update() {
 		float dir_mag = MagVecf(dir);
 		dir[0] = dir[0] / dir_mag;
 		dir[1] = dir[1] / dir_mag;
-		vel[0] = dir[0] * DEFAULT_VELOCITY * speed_modifier * attributes.fitess;
-		vel[1] = dir[1] * DEFAULT_VELOCITY * speed_modifier * attributes.fitess;
+		float total_fitess = attributes.fitess;
+		for (auto i : items)
+			total_fitess += i.attributes.fitess;
+		vel[0] = dir[0] * DEFAULT_VELOCITY * speed_modifier * total_fitess;
+		vel[1] = dir[1] * DEFAULT_VELOCITY * speed_modifier * total_fitess;
 		break;
 	}
 	case CharacterState::ATTACKING: {

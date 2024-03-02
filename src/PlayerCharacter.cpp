@@ -50,8 +50,11 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 			float dir_mag = MagVecf(dir);
 			dir[0] = dir[0] / dir_mag;
 			dir[1] = dir[1] / dir_mag;
-			vel[0] = dir[0] * PLAYER_DEFAULT_VELOCITY * attributes.fitess;
-			vel[1] = dir[1] * PLAYER_DEFAULT_VELOCITY * attributes.fitess;
+			float total_fitess = attributes.fitess;
+			for (auto i : items)
+				total_fitess += i.attributes.fitess;
+			vel[0] = dir[0] * PLAYER_DEFAULT_VELOCITY * total_fitess;
+			vel[1] = dir[1] * PLAYER_DEFAULT_VELOCITY * total_fitess;
 		}
 	}
 	break;

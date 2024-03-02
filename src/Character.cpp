@@ -28,7 +28,11 @@ void Character::cast_spell(int spell_num, Vecf direction) {
 		Vecf offset; // to make so that the spell is off character body
 		offset[0] = getX() + (direction[0] > 0 ? image->width / 2 : -image->width / 2);
 		offset[1] = getY();
-		spells[spell_num]->cast(offset, direction, attributes.arcane); // damage scalling with attribute
+		// damage scalling with attribute
+		float total_arcane = attributes.arcane;
+		for (auto i : items)
+			total_arcane += i.attributes.arcane;
+		spells[spell_num]->cast(offset, direction, total_arcane);
 	}
 }
 
