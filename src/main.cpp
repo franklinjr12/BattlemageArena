@@ -6,6 +6,7 @@
 #include "ArenaFightSceneFactory.hpp"
 #include "ArenaResultsScene.hpp"
 #include "ArenaTestScene.hpp"
+#include "LevelUpScene.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -43,13 +44,21 @@ int main(void) {
 	Camera* camera_shop = new Camera(0, 0, game->width, game->height);
 	auto* shop_scene = new Scene(camera_shop, background_shop, game->width, game->height);
 
-	game->current_scene = arena_scene;
+	Image* background_levelup = asset_man->get_image("gray_background.png");
+	background_levelup->resize(game->width, game->height);
+	Camera* camera_levelup = new Camera(0, 0, game->width, game->height);
+	auto* levelup_scene = new LevelUpScene(camera_levelup, background_levelup, game->width, game->height, pc);
+
+
+	//game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
 	//game->current_scene = arena_test_scene;
+	game->current_scene = levelup_scene;
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
 	game->scenes.push_back(arena_test_scene);
 	game->scenes.push_back(shop_scene);
+	game->scenes.push_back(levelup_scene);
 
 	game->run();
 

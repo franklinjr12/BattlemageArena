@@ -17,6 +17,10 @@ ArenaFightScene::ArenaFightScene(Camera* camera, Image* background, uint32_t w, 
 
 }
 
+ArenaFightScene::~ArenaFightScene() {
+	// should clear all created objects
+}
+
 void ArenaFightScene::_update() {
 	std::vector<ObjectId> bodies_to_remove;
 	bool arena_cleared = true;
@@ -48,7 +52,12 @@ void ArenaFightScene::_update() {
 			ObjectGroup g = (ObjectGroup)GameGroups::PLAYER;
 			if (VectorHasGroupId(b->groups, g)) {
 				PlayerCharacter* p = (PlayerCharacter*)b;
+				auto current_level = p->player_exp->current_level;
 				p->player_exp->add(game->arena_results_stats.experience_earned);
+				auto new_level = p->player_exp->current_level;
+				if (current_level < new_level) {
+					p->attributes.points++;
+				}
 				// should clear here?
 				//game->arena_results_stats.experience_earned = 0;
 			}

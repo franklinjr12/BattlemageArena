@@ -3,6 +3,7 @@
 #define ARENA_FIGHT_NAME "arena_fight"
 #define ARENA_RESULTS_NAME "arena_results"
 #define SHOP_NAME "shop"
+#define LEVEL_UP_NAME "lvlup"
 
 #define ARENA_DIFFICULTY_EASY "easy"
 #define ARENA_DIFFICULTY_NORMAL "normal"

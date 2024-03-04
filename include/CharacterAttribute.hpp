@@ -7,4 +7,5 @@ public:
 	int dexterity = 1; //cooldowns applied levelling up
 	int luck = 1; //critical hits not applied yet
 	int fitess = 1; //speed applied on inherited characters
+	int points = 0; //points used to level up
 };
