@@ -30,6 +30,7 @@ ArenaResultsScene::ArenaResultsScene(Camera* camera, Image* background, uint32_t
 	//close_results_button = new Button(position, button_image, button_image->width, button_image->height);
 	close_results_button = new Button(position, button_image);
 	uis.push_front(close_results_button);
+	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
 	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 }

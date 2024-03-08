@@ -28,8 +28,6 @@ int main(void) {
 	game->events_manager->subscribe(EventType::MouseInput, pc);
 	game->events_manager->subscribe(EventType::SceneChanged, pc);
 
-	pc->attributes.points = 2;
-
 	Image* background_results = asset_man->get_image("gray_background.png");
 	background_results->resize(game->width, game->height);
 	Camera* camera = new Camera(0, 0, game->width, game->height);
@@ -45,6 +43,7 @@ int main(void) {
 	background_shop->resize(game->width, game->height);
 	Camera* camera_shop = new Camera(0, 0, game->width, game->height);
 	auto* shop_scene = new Scene(camera_shop, background_shop, game->width, game->height);
+	shop_scene->name = SHOP_NAME;
 
 	Image* background_levelup = asset_man->get_image("gray_background.png");
 	background_levelup->resize(game->width, game->height);
@@ -53,9 +52,9 @@ int main(void) {
 
 
 	//game->current_scene = arena_scene;
-	game->current_scene = arena_results_scene;
+	//game->current_scene = arena_results_scene;
 	//game->current_scene = arena_test_scene;
-	//game->current_scene = levelup_scene;
+	game->current_scene = levelup_scene;
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
 	game->scenes.push_back(arena_test_scene);
