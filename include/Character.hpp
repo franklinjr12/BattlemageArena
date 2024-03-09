@@ -48,5 +48,6 @@ public:
 	std::vector<Spell*> spells;
 	std::vector<SpellEffect*> effects_applied;
 	CharacterAttributes attributes;
-	std::vector<CharacterItem> items;
+	std::vector<CharacterItem*> items;
+	int gold;
 };

@@ -30,8 +30,8 @@ void Character::cast_spell(int spell_num, Vecf direction) {
 		offset[1] = getY();
 		// damage scalling with attribute
 		float total_arcane = attributes.arcane;
-		for (auto i : items)
-			total_arcane += i.attributes.arcane;
+		for (auto* i : items)
+			total_arcane += i->attributes.arcane;
 		spells[spell_num]->cast(offset, direction, total_arcane);
 	}
 }

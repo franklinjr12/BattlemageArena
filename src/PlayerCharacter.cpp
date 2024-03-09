@@ -51,8 +51,8 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 			dir[0] = dir[0] / dir_mag;
 			dir[1] = dir[1] / dir_mag;
 			float total_fitness = attributes.fitness;
-			for (auto i : items)
-				total_fitness += i.attributes.fitness;
+			for (auto* i : items)
+				total_fitness += i->attributes.fitness;
 			vel[0] = dir[0] * PLAYER_DEFAULT_VELOCITY * total_fitness;
 			vel[1] = dir[1] * PLAYER_DEFAULT_VELOCITY * total_fitness;
 		}

@@ -151,6 +151,7 @@
     <ClCompile Include="src\ArenaTestScene.cpp" />
     <ClCompile Include="src\ArenaFightSceneFactory.cpp" />
     <ClCompile Include="src\CreatureNPCFactory.cpp" />
+    <ClCompile Include="src\ItemShopScene.cpp" />
     <ClCompile Include="src\LevelUpScene.cpp" />
     <ClCompile Include="src\MageNPCFactory.cpp" />
     <ClCompile Include="src\ArenaFightScene.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="include\ExperienceBar.hpp" />
     <ClInclude Include="include\GroupsDef.hpp" />
     <ClInclude Include="include\HealthBar.hpp" />
+    <ClInclude Include="include\ItemShopScene.hpp" />
     <ClInclude Include="include\LevelUpScene.hpp" />
     <ClInclude Include="include\MageNPC.hpp" />
     <ClInclude Include="include\NPC.hpp" />

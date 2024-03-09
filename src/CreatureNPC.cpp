@@ -29,7 +29,7 @@ void CreatureNPC::attack(Vecf dir){
 	cast_pos[1] += dir[1] * 50;
 	// damage scalling with attribute
 	float total_arcane = attributes.arcane;
-	for (auto i : items)
-		total_arcane += i.attributes.arcane;
+	for (auto* i : items)
+		total_arcane += i->attributes.arcane;
 	spells[0]->cast(cast_pos, dir, total_arcane);
 }
