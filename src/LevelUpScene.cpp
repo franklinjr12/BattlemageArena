@@ -64,6 +64,12 @@ LevelUpScene::LevelUpScene(Camera* camera, Image* background, uint32_t w, uint32
 	close_button->name = "close_button";
 	uis.push_front(close_button);
 
+	position[0] = 150;
+	position[1] = game->height / 2;
+	auto* shop_display = new TextDisplay(position, img, "LEVEL UP SHOP", font);
+	shop_display->name = "level_up_shop_display";
+	uis.push_front(shop_display);
+
 	position[0] = game->width / 2 + 150;
 	position[1] = SPACING * 2 - 30;
 

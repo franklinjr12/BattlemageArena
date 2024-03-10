@@ -60,8 +60,9 @@ int main(void) {
 	//game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
 	//game->current_scene = arena_test_scene;
-	//game->current_scene = levelup_scene;
-	game->current_scene = items_shop_scene;
+	game->current_scene = levelup_scene;
+	//game->current_scene = items_shop_scene;
+
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
 	game->scenes.push_back(arena_test_scene);
