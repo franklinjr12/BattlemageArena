@@ -168,6 +168,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\NPC.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
+    <ClCompile Include="src\ShopScene.cpp" />
     <ClCompile Include="src\Spell.cpp" />
     <ClCompile Include="src\SpellCooldownDisplay.cpp" />
     <ClCompile Include="src\SpellInstance.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="include\NPC.hpp" />
     <ClInclude Include="include\PlayerCharacter.hpp" />
     <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\ShopScene.hpp" />
     <ClInclude Include="include\Spell.hpp" />
     <ClInclude Include="include\SpellCooldownDisplay.hpp" />
     <ClInclude Include="include\SpellEffect.hpp" />

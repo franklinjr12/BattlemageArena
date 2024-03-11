@@ -105,6 +105,7 @@ LevelUpScene::LevelUpScene(Camera* camera, Image* background, uint32_t w, uint32
 
 LevelUpScene::~LevelUpScene() {
 	EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
+	EventsManager::getInstance()->unsubscribe(EventType::MouseInput, this);
 	// should delete all memory allocated
 }
 
