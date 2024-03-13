@@ -20,7 +20,7 @@ int main(void) {
 	game = new Game();
 	
 	auto asset_man = AssetsManager::get_instance();
-	
+
 	ArenaFightScene* arena_scene = ArenaFightSceneFactory::create(ARENA_DIFFICULTY_EASY);
 
 	PlayerCharacter* pc = new PlayerCharacter();
@@ -39,7 +39,7 @@ int main(void) {
 	Image* background_test = asset_man->get_image("battle_arena.png");
 	background_test->resize(game->width, game->height);
 	Camera* camera2 = new Camera(0, 0, game->width, game->height);
-	auto* arena_test_scene = new ArenaTestScene(camera, background_results, game->width, game->height);
+	auto* arena_test_scene = new ArenaTestScene(camera, background_test, game->width, game->height);
 	arena_test_scene->add_body(pc);
 
 	Image* background_shop = asset_man->get_image("gray_background.png");
@@ -59,10 +59,10 @@ int main(void) {
 
 	//game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
-	//game->current_scene = arena_test_scene;
+	game->current_scene = arena_test_scene;
 	//game->current_scene = levelup_scene;
 	//game->current_scene = items_shop_scene;
-	game->current_scene = shop_scene;
+	//game->current_scene = shop_scene;
 
 	game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
