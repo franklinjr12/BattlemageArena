@@ -42,5 +42,7 @@ ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
     for (int i = 0; i < num_mages; i++, enemies_positions_index++) {
         scene->add_body(MageNPCFactory::create(enemies_positions[enemies_positions_index]));
     }
+    // add the game player
+    scene->add_body(game->player);
     return scene;
 }
