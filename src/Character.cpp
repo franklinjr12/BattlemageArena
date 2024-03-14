@@ -26,7 +26,10 @@ void Character::_update() {
 void Character::cast_spell(int spell_num, Vecf direction) {
 	if (spells.size() >= spell_num) {
 		Vecf offset; // to make so that the spell is off character body
-		offset[0] = getX() + (direction[0] > 0 ? image->width / 2 : -image->width / 2);
+		float spell_offset_x = spells[spell_num]->image->width * 0.75;
+		float body_offset_x = image->width * 0.75;
+		float total_offset_x = spell_offset_x + body_offset_x;
+		offset[0] = getX() + (direction[0] > 0 ? total_offset_x : -total_offset_x);
 		offset[1] = getY();
 		// damage scalling with attribute
 		float total_arcane = attributes.arcane;
