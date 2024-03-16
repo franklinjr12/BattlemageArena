@@ -60,6 +60,7 @@ void ArenaResultsScene::_process_events(std::vector<event_bytes_type> data) {
 			difficulty_display->text = std::format("{} difficulty", res.difficulty);
 			gold_display->text = std::format("{} gold", res.gold_earned);
 			experience_display->text = std::format("{} exp", res.experience_earned);
+			
 		}
 		break;
 	}

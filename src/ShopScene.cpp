@@ -76,6 +76,7 @@ void ShopScene::_process_events(std::vector<event_bytes_type> data) {
 							break;
 						}
 					}
+					game->clear_arena_fight_scene();
 					auto* arena = ArenaFightSceneFactory::create(ARENA_DIFFICULTY_EASY);
 					game->scenes.push_back(arena);
 					game->change_scene(ARENA_FIGHT_NAME);

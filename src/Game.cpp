@@ -35,3 +35,17 @@ void Game::game_draw() {
 		}
 	}
 }
+
+void Game::clear_arena_fight_scene() {
+	arena_results_stats.cleared_time = 0;
+	arena_results_stats.difficulty = "";
+	arena_results_stats.enemies_killed = 0;
+	arena_results_stats.experience_earned = 0;
+	arena_results_stats.gold_earned = 0;
+	for (auto it = scenes.begin(); it != scenes.end(); it++) {
+		if ((*it)->name == ARENA_FIGHT_NAME) {
+			scenes.erase(it, it);
+			return;
+		}
+	}
+}

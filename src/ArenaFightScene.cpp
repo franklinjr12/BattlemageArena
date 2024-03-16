@@ -6,6 +6,8 @@
 #include "CombatTimer.hpp"
 
 #include <ArcaneUtils.hpp>
+#include <chrono>
+#include <random>
 
 CombatTimer* cb;
 
@@ -14,7 +16,6 @@ ArenaFightScene::ArenaFightScene(Camera* camera, Image* background, uint32_t w, 
 	gravity = 0;
 	cb = new CombatTimer(120);
 	uis.push_front(cb);
-
 }
 
 ArenaFightScene::~ArenaFightScene() {
@@ -45,28 +46,27 @@ void ArenaFightScene::_update() {
 	}
 	for (ObjectId& b : bodies_to_remove)
 		remove_body(b);
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::default_random_engine generator(seed);
+	std::uniform_int_distribution<int> gold_distribution(1, 5);
+	std::uniform_int_distribution<int> exp_distribution(40, 60);
+	game->arena_results_stats.experience_earned = exp_distribution(generator);
 	// there are no more NPCs to fight show finish arena screen
 	if (arena_cleared) {
 		// give exp to the player
-		for (auto* b : bodies) {
-			ObjectGroup g = (ObjectGroup)GameGroups::PLAYER;
-			if (VectorHasGroupId(b->groups, g)) {
-				PlayerCharacter* p = (PlayerCharacter*)b;
-				auto current_level = p->player_exp->current_level;
-				p->player_exp->add(game->arena_results_stats.experience_earned);
-				auto new_level = p->player_exp->current_level;
-				if (current_level < new_level) {
-					p->attributes.points++;
-				}
-				// should clear here?
-				//game->arena_results_stats.experience_earned = 0;
-			}
+		PlayerCharacter* p = game->player;
+		auto current_level = p->player_exp->current_level;
+		p->player_exp->add(game->arena_results_stats.experience_earned);
+		auto new_level = p->player_exp->current_level;
+		if (current_level < new_level) {
+			p->attributes.points++;
 		}
 		// fill arena cleared stats
 		game->arena_results_stats.cleared_time = cb->elapsed_time;
 		// enemies killed is already done
 		// difficulty is already done
-		game->arena_results_stats.gold_earned = gold_earned;
+		//game->arena_results_stats.gold_earned = gold_earned;
+		game->arena_results_stats.gold_earned = gold_distribution(generator);
 		// expererience is already done
 		game->change_scene(ARENA_RESULTS_NAME);
 	}

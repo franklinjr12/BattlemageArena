@@ -14,6 +14,8 @@ public:
 
 	void game_draw() override;
 
+	void clear_arena_fight_scene();
+
 	Font* font;
 	PlayerCharacter* player;
 	Scene* arena_fight_scene;

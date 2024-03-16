@@ -1,6 +1,7 @@
 #include "ExperienceBar.hpp"
 
 #include <AssetsManager.hpp>
+#include <Logger.hpp>
 
 const int MAX_LEVEL = 10;
 const float level_limits[MAX_LEVEL] = {100,200,300,400,500,600,700,800,900,1000};
@@ -24,6 +25,7 @@ void ExperienceBar::draw(Vecf position) {
 }
 
 void ExperienceBar::add(float exp) {
+	A2D_LOGI("player got {} exp", exp);
 	current_exp_points += exp;
 	if (current_exp_points > level_limits[MAX_LEVEL - 1]) {
 		current_exp_points = level_limits[MAX_LEVEL - 1];

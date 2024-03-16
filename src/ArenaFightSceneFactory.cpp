@@ -44,5 +44,10 @@ ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
     }
     // add the game player
     scene->add_body(game->player);
+    Vecf initial_player_pos = { 500,500 };
+    game->player->setX(initial_player_pos[0]);
+    game->player->setY(initial_player_pos[1]);
+    game->player->set_position[0] = initial_player_pos[0];
+    game->player->set_position[1] = initial_player_pos[1];
     return scene;
 }

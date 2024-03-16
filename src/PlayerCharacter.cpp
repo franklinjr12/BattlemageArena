@@ -32,11 +32,13 @@ PlayerCharacter::PlayerCharacter() {
 	spells_ui[2] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 1 * spacing, ui_yp }, sp1->spell_ui);
 	spells_ui[3] = new SpellCooldownDisplay(Vecf{ ((float)game->width / 2) + 2 * spacing + sw, ui_yp }, sp1->spell_ui);
 	player_exp = new ExperienceBar(Vecf{ 120,715 });
+	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 }
 
 void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
-	switch (data[0]) {
-	case (event_bytes_type)EventType::MouseInput: {
+	EventType evt_type = (EventType)data[0];
+	switch (evt_type) {
+	case EventType::MouseInput: {
 		// move command
 		if (data[1] == GLFW_PRESS && data[2] == GLFW_MOUSE_BUTTON_RIGHT) {
 			Vecf mouse_pos;
@@ -58,7 +60,7 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 		}
 	}
 	break;
-	case (event_bytes_type)EventType::KeyboardInput: {
+	case EventType::KeyboardInput: {
 		if (data[1] == GLFW_RELEASE) {
 			switch (data[2]) {
 			case GLFW_KEY_Q: {
@@ -88,7 +90,7 @@ void PlayerCharacter::process_events(std::vector<event_bytes_type> data) {
 		}
 	}
 	break;
-	case (event_bytes_type)EventType::SceneChanged: {
+	case EventType::SceneChanged: {
 		std::string scene_name = "";
 		int size = (int)data[1];
 		for (int i = 2; i < 2 + size; i++) {

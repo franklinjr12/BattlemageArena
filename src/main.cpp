@@ -22,9 +22,9 @@ int main(void) {
 	PlayerCharacter* pc = new PlayerCharacter();
 	game->player = pc;
 	pc->gold = 5;
-	game->events_manager->subscribe(EventType::KeyboardInput, pc);
-	game->events_manager->subscribe(EventType::MouseInput, pc);
-	game->events_manager->subscribe(EventType::SceneChanged, pc);
+	// game->events_manager->subscribe(EventType::KeyboardInput, pc);
+	// game->events_manager->subscribe(EventType::MouseInput, pc);
+	// game->events_manager->subscribe(EventType::SceneChanged, pc);
 
 	auto asset_man = AssetsManager::get_instance();
 
@@ -59,10 +59,10 @@ int main(void) {
 
 	//game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
-	game->current_scene = arena_test_scene;
+	//game->current_scene = arena_test_scene;
 	//game->current_scene = levelup_scene;
 	//game->current_scene = items_shop_scene;
-	//game->current_scene = shop_scene;
+	game->current_scene = shop_scene;
 
 	//game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);

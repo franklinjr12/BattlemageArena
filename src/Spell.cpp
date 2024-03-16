@@ -16,7 +16,6 @@ Spell::Spell(float cooldown_ms) {
 bool Spell::cast(Vecf position, Vecf dir, float extra_damage) {
 	if (on_cooldown)
 		return false;
-	A2D_LOGI("Spell id {} on cooldown", id);
 	on_cooldown = true;
 	if (extra_damage != 1)
 		this->extra_damage = damage + (damage * extra_damage / 10);
@@ -30,7 +29,6 @@ void Spell::process_events(std::vector<event_bytes_type> data) {
 	case (event_bytes_type)EventType::Timer:
 		ObjectId income_timer = (ObjectId)data[1];
 		if (income_timer == timer->id) {
-			A2D_LOGI("Spell id {} off cooldown", id);
 			on_cooldown = false;
 		}
 	}

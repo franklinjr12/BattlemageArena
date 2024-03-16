@@ -101,11 +101,13 @@ LevelUpScene::LevelUpScene(Camera* camera, Image* background, uint32_t w, uint32
 
 	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
+	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 }
 
 LevelUpScene::~LevelUpScene() {
 	EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
 	EventsManager::getInstance()->unsubscribe(EventType::MouseInput, this);
+	EventsManager::getInstance()->unsubscribe(EventType::SceneChanged, this);
 	// should delete all memory allocated
 }
 
@@ -156,6 +158,24 @@ void LevelUpScene::_process_events(std::vector<event_bytes_type> data) {
 			}
 
 		}
+		break;
+	}
+	case (event_bytes_type)EventType::SceneChanged: {
+		std::string scene_name = "";
+		int size = (int)data[1];
+		for (int i = 2; i < 2 + size; i++) {
+			scene_name += (char)data[i];
+		}
+		if (scene_name == name) {
+			// in case we entered the scene need to update the displays
+			get_text_display_by_name(uis, "points_display")->text = std::format("{} points left", player->attributes.points);
+			get_text_display_by_name(uis, "will_display")->text = std::format("{} will", player->attributes.will);
+			get_text_display_by_name(uis, "arcane_display")->text = std::format("{} arcane", player->attributes.arcane);
+			get_text_display_by_name(uis, "dexterity_display")->text = std::format("{} dexterity", player->attributes.dexterity);
+			get_text_display_by_name(uis, "luck_display")->text = std::format("{} luck", player->attributes.luck);
+			get_text_display_by_name(uis, "fitness_display")->text = std::format("{} fitness", player->attributes.fitness);
+		}
+		break;
 	}
 	}
 }

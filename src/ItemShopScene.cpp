@@ -61,6 +61,7 @@ ItemShopScene::ItemShopScene(Camera* camera, Image* background, uint32_t w, uint
 
 	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
+	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 }
 
 void ItemShopScene::_process_events(std::vector<event_bytes_type> data) {
@@ -108,6 +109,17 @@ void ItemShopScene::_process_events(std::vector<event_bytes_type> data) {
 					gold_display->text = std::format("{} gold", player->gold);
 				}
 			}
+		}
+		break;
+	}
+	case (event_bytes_type)EventType::SceneChanged: {
+		std::string scene_name = "";
+		int size = (int)data[1];
+		for (int i = 2; i < 2 + size; i++) {
+			scene_name += (char)data[i];
+		}
+		if (scene_name == name) {
+			gold_display->text = std::format("{} gold", player->gold);
 		}
 	}
 	}
