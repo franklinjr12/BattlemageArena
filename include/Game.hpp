@@ -18,6 +18,7 @@ public:
 
 	Font* font;
 	PlayerCharacter* player;
+	Image const* player_img;
 	Scene* arena_fight_scene;
 	Scene* arena_results_scene;
 	ArenaResultsStats arena_results_stats;

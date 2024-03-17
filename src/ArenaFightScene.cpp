@@ -67,6 +67,7 @@ void ArenaFightScene::_update() {
 		// difficulty is already done
 		//game->arena_results_stats.gold_earned = gold_earned;
 		game->arena_results_stats.gold_earned = gold_distribution(generator);
+		game->player->gold += game->arena_results_stats.gold_earned;
 		// expererience is already done
 		game->change_scene(ARENA_RESULTS_NAME);
 	}

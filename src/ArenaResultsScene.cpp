@@ -30,7 +30,6 @@ ArenaResultsScene::ArenaResultsScene(Camera* camera, Image* background, uint32_t
 	//close_results_button = new Button(position, button_image, button_image->width, button_image->height);
 	close_results_button = new Button(position, button_image);
 	uis.push_front(close_results_button);
-	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
 	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 }
@@ -46,22 +45,22 @@ void ArenaResultsScene::_draw()
 void ArenaResultsScene::_process_events(std::vector<event_bytes_type> data) {
 	switch (data[0]) {
 	case (event_bytes_type)EventType::SceneChanged: {
-		std::string scene_name = "";
-		int size = (int)data[1];
-		for (int i = 2; i < 2 + size; i++) {
-			scene_name += (char)data[i];
-		}
-		if (scene_name == name) {
-			// entered this scene
-			// load the data from results
-			auto& res = game->arena_results_stats;
-			time_display->text = std::format("{}s", res.cleared_time);
-			enemies_count_display->text = std::format("{} killed", res.enemies_killed);
-			difficulty_display->text = std::format("{} difficulty", res.difficulty);
-			gold_display->text = std::format("{} gold", res.gold_earned);
-			experience_display->text = std::format("{} exp", res.experience_earned);
-			
-		}
+		//std::string scene_name = "";
+		//int size = (int)data[1];
+		//for (int i = 2; i < 2 + size; i++) {
+		//	scene_name += (char)data[i];
+		//}
+		//if (scene_name == name) {
+		//	// entered this scene
+		//	// load the data from results
+		//	auto& res = game->arena_results_stats;
+		//	time_display->text = std::format("{}s", res.cleared_time);
+		//	enemies_count_display->text = std::format("{} killed", res.enemies_killed);
+		//	difficulty_display->text = std::format("{} difficulty", res.difficulty);
+		//	gold_display->text = std::format("{} gold", res.gold_earned);
+		//	experience_display->text = std::format("{} exp", res.experience_earned);
+		//	
+		//}
 		break;
 	}
 	case (event_bytes_type)EventType::ButtonClicked: {
@@ -72,4 +71,15 @@ void ArenaResultsScene::_process_events(std::vector<event_bytes_type> data) {
 		break;
 	}
 	}
+}
+
+void ArenaResultsScene::on_scene_entered() {
+	// entered this scene
+	// load the data from results
+	auto& res = game->arena_results_stats;
+	time_display->text = std::format("{}s", res.cleared_time);
+	enemies_count_display->text = std::format("{} killed", res.enemies_killed);
+	difficulty_display->text = std::format("{} difficulty", res.difficulty);
+	gold_display->text = std::format("{} gold", res.gold_earned);
+	experience_display->text = std::format("{} exp", res.experience_earned);
 }

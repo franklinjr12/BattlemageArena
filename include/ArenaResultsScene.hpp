@@ -12,6 +12,7 @@ public:
 	void _update() override;
 	void _draw() override;
 	void _process_events(std::vector<event_bytes_type> data) override;
+	void on_scene_entered() override;
 
 	TextDisplay* time_display;
 	TextDisplay* enemies_count_display;

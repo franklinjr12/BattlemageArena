@@ -54,13 +54,11 @@ ItemShopScene::ItemShopScene(Camera* camera, Image* background, uint32_t w, uint
 	position[1] += SPACING;
 
 	auto* button_image = AssetsManager::get_instance()->get_image("basic_button.png");
-	auto* close_button = new Button(position, button_image);
-	close_button->name = "close_button";
-	uis.push_front(close_button);
+	auto* close_item_shop_button = new Button(position, button_image);
+	close_item_shop_button->name = "close_item_shop_button";
+	uis.push_front(close_item_shop_button);
 
 
-	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
-	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
 	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 }
 
@@ -70,7 +68,8 @@ void ItemShopScene::_process_events(std::vector<event_bytes_type> data) {
 		ObjectId btn_id = (ObjectId)data[1];
 		for (auto* b : uis) {
 			if (btn_id == b->id) {
-				if (b->name == "close_button") {
+				if (b->name == "close_item_shop_button") {
+					EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
 					game->change_scene(SHOP_NAME);
 				}
 				if (player->gold > 0 && b->name == "will_button") {
@@ -113,14 +112,19 @@ void ItemShopScene::_process_events(std::vector<event_bytes_type> data) {
 		break;
 	}
 	case (event_bytes_type)EventType::SceneChanged: {
-		std::string scene_name = "";
-		int size = (int)data[1];
-		for (int i = 2; i < 2 + size; i++) {
-			scene_name += (char)data[i];
-		}
-		if (scene_name == name) {
-			gold_display->text = std::format("{} gold", player->gold);
-		}
+		//std::string scene_name = "";
+		//int size = (int)data[1];
+		//for (int i = 2; i < 2 + size; i++) {
+		//	scene_name += (char)data[i];
+		//}
+		//if (scene_name == name) {
+		//	gold_display->text = std::format("{} gold", player->gold);
+		//}
 	}
 	}
+}
+
+void ItemShopScene::on_scene_entered() {
+	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
+	gold_display->text = std::format("{} gold", player->gold);
 }

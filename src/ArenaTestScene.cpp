@@ -18,9 +18,9 @@ ArenaTestScene::ArenaTestScene(Camera* camera, Image* background, uint32_t w, ui
 	uis.push_front(add_exp_button);
 	position[1] += SPACING;
 
-	auto* close_button = new Button(position, button_image);
-	close_button->name = "close_button";
-	uis.push_front(close_button);
+	auto* close_arena_test_scene_button = new Button(position, button_image);
+	close_arena_test_scene_button->name = "close_arena_test_scene_button";
+	uis.push_front(close_arena_test_scene_button);
 
 	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 }
@@ -31,7 +31,7 @@ void ArenaTestScene::_process_events(std::vector<event_bytes_type> data) {
 		ObjectId btn_id = (ObjectId)data[1];
 		for (auto* b : uis) {
 			if (btn_id == b->id) {
-				if (b->name == "close_button") {
+				if (b->name == "close_arena_test_scene_button") {
 					game->change_scene(SHOP_NAME);
 				}
 				else if (b->name == "add_exp_button") {

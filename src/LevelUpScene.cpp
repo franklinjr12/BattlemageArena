@@ -60,9 +60,9 @@ LevelUpScene::LevelUpScene(Camera* camera, Image* background, uint32_t w, uint32
 	position[1] += SPACING;
 
 	auto* button_image = AssetsManager::get_instance()->get_image("basic_button.png");
-	auto* close_button = new Button(position, button_image);
-	close_button->name = "close_button";
-	uis.push_front(close_button);
+	auto* close_level_up_scene_button = new Button(position, button_image);
+	close_level_up_scene_button->name = "close_level_up_scene_button";
+	uis.push_front(close_level_up_scene_button);
 
 	position[0] = 150;
 	position[1] = game->height / 2;
@@ -99,14 +99,11 @@ LevelUpScene::LevelUpScene(Camera* camera, Image* background, uint32_t w, uint32
 	position[1] += SPACING;
 
 
-	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
-	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
 	EventsManager::getInstance()->subscribe(EventType::SceneChanged, this);
 }
 
 LevelUpScene::~LevelUpScene() {
 	EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
-	EventsManager::getInstance()->unsubscribe(EventType::MouseInput, this);
 	EventsManager::getInstance()->unsubscribe(EventType::SceneChanged, this);
 	// should delete all memory allocated
 }
@@ -121,7 +118,8 @@ void LevelUpScene::_process_events(std::vector<event_bytes_type> data) {
 		ObjectId btn_id = (ObjectId)data[1];
 		for (auto* b : uis) {
 			if (btn_id == b->id) {
-				if (b->name == "close_button") {
+				if (b->name == "close_level_up_scene_button") {
+					EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
 					game->change_scene(SHOP_NAME);
 				}
 				if (b->name == "will_button" && player->attributes.points > 0) {
@@ -178,4 +176,8 @@ void LevelUpScene::_process_events(std::vector<event_bytes_type> data) {
 		break;
 	}
 	}
+}
+
+void LevelUpScene::on_scene_entered() {
+	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 }

@@ -47,10 +47,7 @@ ShopScene::ShopScene(Camera* camera, Image* background, uint32_t w, uint32_t h, 
 	fight_arena_button->name = "arena_button";
 	uis.push_front(fight_arena_button);
 	position[1] += SPACING;
-
-
 	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
-	EventsManager::getInstance()->subscribe(EventType::MouseInput, this);
 }
 
 void ShopScene::_process_events(std::vector<event_bytes_type> data) {
@@ -60,25 +57,20 @@ void ShopScene::_process_events(std::vector<event_bytes_type> data) {
 		for (auto* b : uis) {
 			if (btn_id == b->id) {
 				if (b->name == "levelup_shop_button") {
+					EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
 					game->change_scene(LEVEL_UP_NAME);
 					return;
 				}
 				else if (b->name == "items_shop_button") {
+					EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
 					game->change_scene(ITEM_NAME);
 					return;
 				}
 				else if (b->name == "arena_button") {
-					auto& s = game->scenes;
-					for (auto it = s.begin(); it != s.end(); ++it) {
-						if ((*it)->name == ARENA_FIGHT_NAME) {
-							s.erase(it, it);
-							delete (*it);
-							break;
-						}
-					}
 					game->clear_arena_fight_scene();
 					auto* arena = ArenaFightSceneFactory::create(ARENA_DIFFICULTY_EASY);
 					game->scenes.push_back(arena);
+					EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
 					game->change_scene(ARENA_FIGHT_NAME);
 					return;
 				}
@@ -86,4 +78,8 @@ void ShopScene::_process_events(std::vector<event_bytes_type> data) {
 		}
 	}
 	}
+}
+
+void ShopScene::on_scene_entered() {
+	EventsManager::getInstance()->subscribe(EventType::ButtonClicked, this);
 }

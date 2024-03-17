@@ -10,6 +10,7 @@
 #include <vector>
 
 ArenaFightScene* ArenaFightSceneFactory::create(std::string difficulty) {
+    A2D_LOGI("Creating new arena");
     int num_creatures = 0;
     int num_mages = 1;
     if (difficulty == ARENA_DIFFICULTY_EASY) {

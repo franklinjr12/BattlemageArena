@@ -12,6 +12,9 @@ Game::Game() {
 }
 
 void Game::game_loop() {
+	//if (player->image != player_img) {
+	//	A2D_LOGW("player image changed");
+	//}
 }
 
 void Game::game_draw() {
@@ -44,7 +47,7 @@ void Game::clear_arena_fight_scene() {
 	arena_results_stats.gold_earned = 0;
 	for (auto it = scenes.begin(); it != scenes.end(); it++) {
 		if ((*it)->name == ARENA_FIGHT_NAME) {
-			scenes.erase(it, it);
+			scenes.erase(it);
 			return;
 		}
 	}

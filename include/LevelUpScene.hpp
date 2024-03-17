@@ -11,5 +11,6 @@ public:
 	~LevelUpScene();
 	void _update() override;
 	void _process_events(std::vector<event_bytes_type> data) override;
+	void on_scene_entered() override;
 	PlayerCharacter* player = nullptr;
 };

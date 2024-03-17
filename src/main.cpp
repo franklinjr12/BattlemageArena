@@ -21,7 +21,8 @@ int main(void) {
 	
 	PlayerCharacter* pc = new PlayerCharacter();
 	game->player = pc;
-	pc->gold = 5;
+	game->player_img = (Image const*)pc->image;
+	// pc->gold = 5;
 	// game->events_manager->subscribe(EventType::KeyboardInput, pc);
 	// game->events_manager->subscribe(EventType::MouseInput, pc);
 	// game->events_manager->subscribe(EventType::SceneChanged, pc);
