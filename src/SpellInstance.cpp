@@ -18,6 +18,13 @@ SpellInstance::SpellInstance(Spell* owner, Image* img, Vecf spawn_position, Vecf
 	lifetime_timer = new Timer(lifetime_ms);
 	EventsManager::getInstance()->subscribe(EventType::Timer, this);
 	lifetime_timer->start();
+	A2D_LOGI("SpellInstance id {} created", id);
+}
+
+SpellInstance::~SpellInstance() {
+	EventsManager::getInstance()->unsubscribe(EventType::Timer, this);
+	delete lifetime_timer;
+	delete rectangle;
 }
 
 void SpellInstance::handle_collision(ObjectId _id) {

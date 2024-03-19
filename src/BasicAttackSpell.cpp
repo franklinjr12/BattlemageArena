@@ -8,9 +8,10 @@ BasicAttackSpell::BasicAttackSpell(ObjectId owner) : Spell(DEFAULT_TIMEOUT) {
 	this->owner = owner;
 	name = "BasicAttackSpell";
 	image = AssetsManager::get_instance()->get_image("basic_attack_spell.png");
+	spell_ui = AssetsManager::get_instance()->get_image("basic_attack_spell_ui.png");
 	set_cooldown(DEFAULT_TIMEOUT); // it is needed as a workaround for now
 	damage = DEFAULT_DAMAGE;
-	lifetime_ms = 500;
+	lifetime_ms = 100;
 }
 
 void BasicAttackSpell::_cast(Vecf position, Vecf dir) {

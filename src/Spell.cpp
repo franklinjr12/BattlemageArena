@@ -17,6 +17,7 @@ bool Spell::cast(Vecf position, Vecf dir, float extra_damage) {
 	if (on_cooldown)
 		return false;
 	on_cooldown = true;
+	A2D_LOGI("Spell id {} name {} set on_cooldown", id, name);
 	if (extra_damage != 1)
 		this->extra_damage = damage + (damage * extra_damage / 10);
 	_cast(position, dir);
@@ -30,6 +31,7 @@ void Spell::process_events(std::vector<event_bytes_type> data) {
 		ObjectId income_timer = (ObjectId)data[1];
 		if (income_timer == timer->id) {
 			on_cooldown = false;
+			A2D_LOGI("Spell id {} name {} clear on_cooldown", id, name);
 		}
 	}
 	_process_events(data);
