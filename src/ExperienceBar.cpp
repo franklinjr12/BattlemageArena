@@ -13,7 +13,9 @@ ExperienceBar::ExperienceBar(Vecf position) {
 	// will need to create new images and not shared
 	auto img_front = new Image("assets/exp_bar.png", 1000, 20);
 	auto img_back = new Image("assets/progress_bar.png", img_front->width, img_front->height);
-	experience_ui = new ProgressBar(position, img_back, img_front, 0);
+	const int min = 0;
+	const int max = 100;
+	experience_ui = new ProgressBar(position, img_back, img_front, min, max);
 	experience_ui->set_current(0);
 	
 }
@@ -27,6 +29,7 @@ void ExperienceBar::draw(Vecf position) {
 void ExperienceBar::add(float exp) {
 	A2D_LOGI("player got {} exp", exp);
 	current_exp_points += exp;
+	// only for last level
 	if (current_exp_points > level_limits[MAX_LEVEL - 1]) {
 		current_exp_points = level_limits[MAX_LEVEL - 1];
 		current_level = MAX_LEVEL;

@@ -6,6 +6,7 @@
 #define SHOP_NAME "shop"
 #define LEVEL_UP_NAME "lvlup"
 #define ITEM_NAME "items"
+#define ARENA_DIFFICULTY_SCENE_NAME "difficulty"
 
 #define ARENA_DIFFICULTY_EASY "easy"
 #define ARENA_DIFFICULTY_NORMAL "normal"

@@ -9,6 +9,7 @@
 #include "LevelUpScene.hpp"
 #include "ItemShopScene.hpp"
 #include "ShopScene.hpp"
+#include "ArenaDifficultyScene.hpp"
 
 #include <ArcaneVersion.hpp>
 #include <AssetsManager.hpp>
@@ -58,19 +59,25 @@ int main(void) {
 	Camera* camera_items_shop = new Camera(0, 0, game->width, game->height);
 	auto* items_shop_scene = new ItemShopScene(camera_items_shop, background_items_shop, game->width, game->height, pc);
 
+	Image* background_arena_difficulty = asset_man->get_image("gray_background.png");
+	background_arena_difficulty->resize(game->width, game->height);
+	Camera* camera_arena_difficulty = new Camera(0, 0, game->width, game->height);
+	auto* arena_difficulty_scene = new ArenaDifficultyScene(camera_items_shop, background_items_shop, game->width, game->height);
+
 	//game->current_scene = arena_scene;
 	//game->current_scene = arena_results_scene;
-	//game->current_scene = arena_test_scene;
+	 //game->current_scene = arena_test_scene;
 	//game->current_scene = levelup_scene;
 	//game->current_scene = items_shop_scene;
-	game->current_scene = shop_scene;
+	 game->current_scene = shop_scene;
 
 	//game->scenes.push_back(arena_scene);
 	game->scenes.push_back(arena_results_scene);
 	game->scenes.push_back(arena_test_scene);
 	game->scenes.push_back(shop_scene);
 	game->scenes.push_back(levelup_scene);
-	game->scenes.push_back(items_shop_scene);	
+	game->scenes.push_back(items_shop_scene);
+	game->scenes.push_back(arena_difficulty_scene);
 
 	game->run();
 

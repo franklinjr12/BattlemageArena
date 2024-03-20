@@ -40,7 +40,7 @@ ShopScene::ShopScene(Camera* camera, Image* background, uint32_t w, uint32_t h, 
 	uis.push_front(items_shop_button);
 	position[1] += SPACING;
 
-	auto* fight_arena_display = new TextDisplay(position, img, "ARENA", font);
+	auto* fight_arena_display = new TextDisplay(position, img, "ARENA DIFF", font);
 	fight_arena_display->name = "arena_display";
 	uis.push_front(fight_arena_display);
 	auto* fight_arena_button = new Button(Vecf{ position[0] + 100, position[1] - 30 }, button_image);
@@ -67,11 +67,8 @@ void ShopScene::_process_events(std::vector<event_bytes_type> data) {
 					return;
 				}
 				else if (b->name == "arena_button") {
-					game->clear_arena_fight_scene();
-					auto* arena = ArenaFightSceneFactory::create(ARENA_DIFFICULTY_EASY);
-					game->scenes.push_back(arena);
 					EventsManager::getInstance()->unsubscribe(EventType::ButtonClicked, this);
-					game->change_scene(ARENA_FIGHT_NAME);
+					game->change_scene(ARENA_DIFFICULTY_SCENE_NAME);
 					return;
 				}
 			}

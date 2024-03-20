@@ -148,6 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ArenaDifficultyScene.cpp" />
     <ClCompile Include="src\ArenaTestScene.cpp" />
     <ClCompile Include="src\ArenaFightSceneFactory.cpp" />
     <ClCompile Include="src\CreatureNPCFactory.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="src\SpellInteraction.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\ArenaDifficultyScene.hpp" />
     <ClInclude Include="include\ArenaTestScene.hpp" />
     <ClInclude Include="include\ArenaFightSceneFactory.hpp" />
     <ClInclude Include="include\CharacterItem.hpp" />
