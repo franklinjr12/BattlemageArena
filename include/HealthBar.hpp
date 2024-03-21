@@ -9,6 +9,8 @@ public:
 	void draw(Vecf position);
 	void suffer_damage(float damage);
 	float get_hp();
+	float get_max_hp();
+	void add_hp(float points);
 
 	float current_health_points;
 	ProgressBar* health_ui;

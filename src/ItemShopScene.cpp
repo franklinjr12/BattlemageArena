@@ -6,6 +6,8 @@
 #include <AssetsManager.hpp>
 #include <EventsManager.hpp>
 
+#define HEALING_ITEM_COST 1
+
 ItemShopScene::ItemShopScene(Camera* camera, Image* background, uint32_t w, uint32_t h, PlayerCharacter* pc) : Scene(camera, background, w, h) {
 	
 	name = ITEM_NAME;
@@ -41,6 +43,12 @@ ItemShopScene::ItemShopScene(Camera* camera, Image* background, uint32_t w, uint
 	auto* fitness_button = new Button(position, fitness_image);
 	fitness_button->name = "fitness_button";
 	uis.push_front(fitness_button);
+	position[1] += SPACING;
+
+	auto* healing_image = AssetsManager::get_instance()->get_image("healing_item.png");
+	auto* healing_button = new Button(position, healing_image);
+	healing_button->name = "healing_button";
+	uis.push_front(healing_button);
 	position[1] += SPACING;
 
 	position[0] = 100;
@@ -105,6 +113,11 @@ void ItemShopScene::_process_events(std::vector<event_bytes_type> data) {
 					auto* item = new CharacterItem();
 					++item->attributes.fitness;
 					player->items.push_back(item);
+					gold_display->text = std::format("{} gold", player->gold);
+				}
+				if (player->gold >= HEALING_ITEM_COST && b->name == "healing_button") {
+					player->gold -= HEALING_ITEM_COST;
+					player->health_bar->add_hp(player->health_bar->get_max_hp());
 					gold_display->text = std::format("{} gold", player->gold);
 				}
 			}

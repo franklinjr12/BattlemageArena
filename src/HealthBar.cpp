@@ -28,3 +28,13 @@ void HealthBar::suffer_damage(float damage) {
 float HealthBar::get_hp() {
 	return current_health_points;
 }
+
+float HealthBar::get_max_hp() {
+	return health_ui->max;
+}
+
+void HealthBar::add_hp(float points) {
+	current_health_points += points;
+	if (current_health_points > health_ui->max) current_health_points = health_ui->max;
+	health_ui->set_current(current_health_points);
+}
