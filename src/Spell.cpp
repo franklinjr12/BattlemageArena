@@ -20,6 +20,7 @@ bool Spell::cast(Vecf position, Vecf dir, float extra_damage) {
 	A2D_LOGI("Spell id {} name {} set on_cooldown", id, name);
 	if (extra_damage != 1)
 		this->extra_damage = damage + (damage * extra_damage / 10);
+	A2D_LOGI("Extra damage {}", extra_damage);
 	_cast(position, dir);
 	timer->reset();
 	return true;

@@ -9,6 +9,6 @@ public:
 	void _update();
 
 	float attack_distance;
-	const float DEFAULT_ATTACK_DISTANCE = 200;
+	const float DEFAULT_ATTACK_DISTANCE = 100;
 	float drop_experience = 0;
 };

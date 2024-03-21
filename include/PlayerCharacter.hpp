@@ -17,7 +17,7 @@ public:
 	void _draw() override;
 	void _update();
 
-	const float PLAYER_DEFAULT_VELOCITY = 4;
+	const float PLAYER_DEFAULT_VELOCITY = 1;
 	Image* player_right;
 	Image* player_left;
 	ExperienceBar* player_exp;

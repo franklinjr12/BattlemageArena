@@ -17,6 +17,7 @@ CreatureNPC::CreatureNPC(Vecf c_pos, Image* c_image, float c_damage, float c_spe
 	speed_modifier = c_speed;
 	groups.push_back((ObjectGroup)GameGroups::CREATURENPC);
 	spells.push_back(new BasicAttackSpell(id));
+	attack_distance = DEFAULT_ATTACK_DISTANCE;
 }
 
 void CreatureNPC::attack(Vecf dir){
