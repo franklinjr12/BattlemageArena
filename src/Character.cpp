@@ -11,8 +11,10 @@ Character::Character() {
 
 void Character::_draw() {
 	if (health_bar->health_ui->should_draw) {
-		Vecf offset = { getX(), getY() - image->height };
-		health_bar->draw(offset);
+		float offset_x = getX() - health_bar->health_ui->image->width / 2;
+		float offset_y = getY() - image->height / 2 - health_bar->health_ui->image->height;
+		health_bar->draw(Vecf{offset_x, offset_y});
+
 	}
 }
 
