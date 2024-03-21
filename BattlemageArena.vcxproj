@@ -151,6 +151,7 @@
     <ClCompile Include="src\ArenaDifficultyScene.cpp" />
     <ClCompile Include="src\ArenaTestScene.cpp" />
     <ClCompile Include="src\ArenaFightSceneFactory.cpp" />
+    <ClCompile Include="src\BattlemageArenaUtils.cpp" />
     <ClCompile Include="src\CreatureNPCFactory.cpp" />
     <ClCompile Include="src\ItemShopScene.cpp" />
     <ClCompile Include="src\LevelUpScene.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="include\ArenaDifficultyScene.hpp" />
     <ClInclude Include="include\ArenaTestScene.hpp" />
     <ClInclude Include="include\ArenaFightSceneFactory.hpp" />
+    <ClInclude Include="include\BattlemageArenaUtils.hpp" />
     <ClInclude Include="include\CharacterItem.hpp" />
     <ClInclude Include="include\CharacterAttribute.hpp" />
     <ClInclude Include="include\CreatureNPCFactory.hpp" />

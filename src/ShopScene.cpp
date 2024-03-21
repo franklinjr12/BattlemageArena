@@ -40,7 +40,7 @@ ShopScene::ShopScene(Camera* camera, Image* background, uint32_t w, uint32_t h, 
 	uis.push_front(items_shop_button);
 	position[1] += SPACING;
 
-	auto* fight_arena_display = new TextDisplay(position, img, "ARENA DIFF", font);
+	auto* fight_arena_display = new TextDisplay(position, img, "ARENA", font);
 	fight_arena_display->name = "arena_display";
 	uis.push_front(fight_arena_display);
 	auto* fight_arena_button = new Button(Vecf{ position[0] + 100, position[1] - 30 }, button_image);

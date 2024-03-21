@@ -4,12 +4,13 @@
 #include "GroupsDef.hpp"
 #include "NPC.hpp"
 #include "CombatTimer.hpp"
+#include "BattlemageArenaUtils.hpp"
 
 #include <ArcaneUtils.hpp>
-#include <chrono>
-#include <random>
 
 CombatTimer* cb;
+
+
 
 ArenaFightScene::ArenaFightScene(Camera* camera, Image* background, uint32_t w, uint32_t h) : Scene(camera, background, w, h) {
 	name = ARENA_FIGHT_NAME;
@@ -36,6 +37,8 @@ void ArenaFightScene::_update() {
 			// if is a NPC should give some exp to player				
 			g = (ObjectGroup)GameGroups::NPC;
 			if (VectorHasGroupId(b->groups, g)) {
+				game->arena_results_stats.gold_earned += get_gold_from_current_kill();
+				game->arena_results_stats.experience_earned += get_exp_from_current_kill();
 				game->arena_results_stats.enemies_killed++;
 				game->arena_results_stats.experience_earned += ((NPC*)b)->drop_experience;
 			}
@@ -46,11 +49,6 @@ void ArenaFightScene::_update() {
 	}
 	for (ObjectId& b : bodies_to_remove)
 		remove_body(b);
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::default_random_engine generator(seed);
-	std::uniform_int_distribution<int> gold_distribution(1, 5);
-	std::uniform_int_distribution<int> exp_distribution(40, 60);
-	game->arena_results_stats.experience_earned = exp_distribution(generator);
 	// there are no more NPCs to fight show finish arena screen
 	if (arena_cleared) {
 		// give exp to the player
@@ -66,7 +64,6 @@ void ArenaFightScene::_update() {
 		// enemies killed is already done
 		// difficulty is already done
 		//game->arena_results_stats.gold_earned = gold_earned;
-		game->arena_results_stats.gold_earned = gold_distribution(generator);
 		game->player->gold += game->arena_results_stats.gold_earned;
 		// expererience is already done
 		game->change_scene(ARENA_RESULTS_NAME);
